@@ -2,7 +2,7 @@
 title: "Welcome to My Analytics Lab"
 ---
 
-Hello!! My name is Nazlı Elif Hanoğlu.
+Hello!! My name is Nazlı Elif.
 
 This is my personal webpage.
 
