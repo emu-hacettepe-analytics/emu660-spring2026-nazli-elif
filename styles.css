@@ -9,3 +9,40 @@ body {
   background: linear-gradient(135deg, #F3E8FF, #FDE2E4);
   box-shadow: 0 10px 25px rgba(181, 131, 216, 0.25);
 }
+
+/* 🌸 Navbar genel stil */
+.navbar {
+  background: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(181, 131, 216, 0.15);
+  padding: 12px 20px;
+}
+
+/* 🌷 Navbar linklerini buton gibi yap */
+.navbar-nav .nav-link {
+  color: #7A5C9E !important;
+  font-weight: 500;
+  padding: 8px 18px;
+  margin: 0 6px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+/* 🌸 Hover efekti */
+.navbar-nav .nav-link:hover {
+  background: linear-gradient(135deg, #F3E8FF, #FDE2E4);
+  color: #5E548E !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(181, 131, 216, 0.25);
+}
+
+/* 🌷 Aktif sayfa */
+.navbar-nav .nav-link.active {
+  background: linear-gradient(135deg, #E4C1F9, #FDE2E4);
+  color: #4B3F72 !important;
+  font-weight: 600;
+}
+
+body {
+  background: linear-gradient(135deg, #F3E8FF, #FDE2E4);
+}
+

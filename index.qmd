@@ -1,5 +1,5 @@
 ---
-title: "Welcome to My Analytics Lab"
+title: "🌸 Welcome to My Analytics Lab 🌷"
 ---
 ```
 
@@ -8,3 +8,4 @@ Hello!! My name is Nazlı Elif .
 This is my personal webpage.
 
 Please stay tuned to follow my works on data analytics, blog posts, and more.
+
