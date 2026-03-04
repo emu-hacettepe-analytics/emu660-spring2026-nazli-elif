@@ -1,1 +1,4 @@
 /* css styles */
+body {
+  background: linear-gradient(135deg, #F3E8FF, #FDE2E4) !important;
+}
