@@ -2,3 +2,10 @@
 body {
   background: linear-gradient(135deg, #F3E8FF, #FDE2E4) !important;
 }
+
+.pastel-frame {
+  border-radius: 20px;
+  padding: 8px;
+  background: linear-gradient(135deg, #F3E8FF, #FDE2E4);
+  box-shadow: 0 10px 25px rgba(181, 131, 216, 0.25);
+}

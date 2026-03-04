@@ -3,7 +3,7 @@ title: "About Me"
 sidebar: false 
 ---
 
-![](assets/images/vesikalik.jpeg){fig-align="center"}
+![](assets/images/vesikalik.jpeg){ width=250px fig-align="center" .pastel-frame }
 
 # Education
 
