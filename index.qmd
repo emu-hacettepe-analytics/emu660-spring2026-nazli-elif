@@ -1,7 +1,6 @@
 ---
 title: "🌸 Welcome to My Analytics Lab 🌷"
 ---
-```
 
 Hello!! My name is Nazlı Elif .
 
