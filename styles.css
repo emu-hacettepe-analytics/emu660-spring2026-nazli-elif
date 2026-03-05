@@ -48,4 +48,20 @@ body {
   background: linear-gradient(135deg, #F3E8FF, #FDE2E4);
 }
 
+.cv-button {
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #F3E8FF, #FDE2E4);
+  color: #5E548E;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+  box-shadow: 0 6px 15px rgba(181, 131, 216, 0.3);
+}
+
+.cv-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(181, 131, 216, 0.4);
+}
 
