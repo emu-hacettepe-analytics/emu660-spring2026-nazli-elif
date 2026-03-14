@@ -113,7 +113,7 @@ for(i in 1:ncol(new_object)){
   if(is.numeric(new_object[[i]])){
     new_object[[i]] <- ifelse(is.na(new_object[[i]]),2010,new_object[[i]])
   } else if (is.character(new_object[[i]]) | is.factor(new_object[[i]])){
-    new_object[,i] <- ifelse(is.na(new_object[[i]]),paste0("nazli","_",14),new_object[[i]])
+    new_object[[i]] <- ifelse(is.na(new_object[[i]]),paste0("nazli","_",14),new_object[[i]])
   }
 }
 
