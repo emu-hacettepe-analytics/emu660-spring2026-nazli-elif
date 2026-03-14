@@ -2,14 +2,140 @@
 title: "Assignment 1"
 ---
 
-# Assignment 1
 
-```{r}
-1 + 1
-```
-
-My first assignment has two parts.
+My first assignment has four parts.
 
 ## (a)
 
+**Selected Video: "Veri Bilimi ve Endüstri Mühendisliği Üzerine Sohbetler - Mustafa Baydoğan & Erdi Daşdemir".**
+
+**Summary:** In this video, Mustafa Baydoğan discusses data-driven decision-making methods from different sectors, such as the forestry industry, energy markets, and the online retail sector. He also mentioned structured and unstructured data. Structured data is organized in a fixed format such as tables with rows and columns, while unstructured data has no predefined format, such as text, images, or videos. He also discusses the decision-making processes of traditional learning and deep learning, also mentions that one of the biggest efforts in traditional learning is spent on the feature extraction stage. In the ‘New Horizons’ section, he mentions that studies on physics-informed machine learning will increase.
+
 ## (b)
+
+-   **Open-Ended Question:**
+
+    What steps are involved in the decision-making process?
+
+    1.  Defining the problem/situation, setting goals
+    2.  Identifying possible causes of the problem/situation
+    3.  Gathering necessary data related to the problem/situation
+    4.  Identifying alternative solutions, estimating possible outcomes
+    5.  Selecting the most effective/useful/feasible one
+
+-   **Multiple-Choice Question:**
+
+    Which of the following statements about Deep Learning is NOT true?
+
+    a)  It works well with unstructured data such as text, photos, and videos.
+    b)  It can be used together with reinforcement learning methods.
+    c)  [Small changes do not affect the model.]{.underline}
+    d)  It requires a large amount of data and contains many parameters.
+
+## (c)
+
+```{r}
+#| code-fold: true
+
+
+# Write a Function:
+
+data(mtcars)
+compute_stats <- function(m){
+    list(
+    mean = mean(m),
+    median = median(m),
+    variance = var(m),
+    IQR = IQR(m),
+    min = min(m),
+    max = max(m)
+    )
+  }
+
+# Applying the Function Using a Loop:
+ 
+col_number <- ncol(mtcars)
+for(i in 1:col_number){
+  if (is.numeric(mtcars[[i]])) {
+  vektor <- mtcars[[i]]
+  sonuc <- compute_stats(vektor)
+  ad <- colnames(mtcars)[i]
+  cat("Column:", ad, "\n")
+  print(sonuc)
+  }  
+}
+
+
+# An alternative approach with sapply and apply:
+
+print("With sapply:")
+sapply(mtcars, compute_stats)
+print("With apply:")
+apply(mtcars, 2, compute_stats)
+
+```
+
+## (d)
+
+```{r}
+#| code-fold: true
+
+library(dslabs)
+data(polls_us_election_2016)
+
+
+my_first <- "nazli"
+my_birth_year <- 1996
+k <- (nchar(my_first) + my_birth_year) %% 15 + 8
+cat("k:", k)
+
+# k is 14 so it is even, display the first k rows:
+print("Display the first k rows:")
+print(head(polls_us_election_2016, k))
+
+# the total number of NA values in the entire data set
+print("The total number of NA values in the entire data set:")
+sum(is.na(polls_us_election_2016))
+
+# the number of NA values per column, sorted from largest to smallest (display the top 8 columns)
+print("The number of NA values per column, sorted from largest to smallest:") 
+number_NA= colSums(is.na(polls_us_election_2016))
+sort(number_NA,decreasing = TRUE)[1:8]
+
+# Replace all NA values in the data set as follows and store the result as a new object (do not overwrite the original):
+
+# For numeric columns: replace NA values with 1996+14=2010,
+# For character or factor columns: replace NA values with paste0(nazli, "_",14)
+
+new_object <- polls_us_election_2016
+
+for(i in 1:ncol(new_object)){
+  if(is.numeric(new_object[,i])){
+    new_object[,i] <- ifelse(is.na(new_object[,i]),2010,new_object[,i])
+  } else if (is.character(new_object[,i]) | is.factor(new_object[,i])){
+    new_object[,i] <- ifelse(is.na(new_object[,i]),paste0("nazli","_",14),new_object[,i])
+  }
+}
+
+#   Print outputs for the new data frame:
+
+#print(new_object)
+
+#   show the first k=14 rows of the new data frame.
+print("Replace all NA values in the data set as follows and store the result as a new object and Show the first k rows of the new data frame:")
+k<-14
+print(head(new_object, k))
+
+# Display the total number of NA values remaining in the new data frame.
+print("Display the total number of NA values remaining in the new data frame:")
+sum(is.na(new_object))
+
+# Also print anyNA(new_data)
+print("Also print anyNA(new_data):")
+anyNA(new_object)
+
+
+
+
+
+```
