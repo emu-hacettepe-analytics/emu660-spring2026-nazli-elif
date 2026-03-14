@@ -89,9 +89,14 @@ my_birth_year <- 1996
 k <- (nchar(my_first) + my_birth_year) %% 15 + 8
 cat("k:", k)
 
-# k is 14 so it is even, display the first k rows:
-print("Display the first k rows:")
+# display the first k rows:
+if(k%%2==0){
+  print("Display the first k rows:")
 print(head(polls_us_election_2016, k))
+}else{
+  print(tail(polls_us_election_2016, k))
+}
+
 
 # the total number of NA values in the entire data set
 print("The total number of NA values in the entire data set:")
@@ -124,7 +129,12 @@ for(i in 1:ncol(new_object)){
 #   show the first k=14 rows of the new data frame.
 print("Replace all NA values in the data set as follows and store the result as a new object and Show the first k rows of the new data frame:")
 k <- 14
+if(k%%2==0){
+  print("Display the first k rows:")
 print(head(new_object, k))
+}else{
+  print(tail(new_object, k))
+}
 
 # Display the total number of NA values remaining in the new data frame.
 print("Display the total number of NA values remaining in the new data frame:")
