@@ -111,7 +111,7 @@ new_object <- polls_us_election_2016
 
 for(i in 1:ncol(new_object)){
   if(is.numeric(new_object[[i]])){
-    new_object[[i]] <- ifelse(is.na(new_object[,i]),2010,new_object[[i]])
+    new_object[[i]] <- ifelse(is.na(new_object[[i]]),2010,new_object[[i]])
   } else if (is.character(new_object[[i]]) | is.factor(new_object[[i]])){
     new_object[,i] <- ifelse(is.na(new_object[[i]]),paste0("nazli","_",14),new_object[[i]])
   }
@@ -123,7 +123,7 @@ for(i in 1:ncol(new_object)){
 
 #   show the first k=14 rows of the new data frame.
 print("Replace all NA values in the data set as follows and store the result as a new object and Show the first k rows of the new data frame:")
-k<-14
+k <- 14
 print(head(new_object, k))
 
 # Display the total number of NA values remaining in the new data frame.
