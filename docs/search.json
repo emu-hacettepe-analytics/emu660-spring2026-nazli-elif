@@ -9,63 +9,63 @@
   {
     "objectID": "project.html",
     "href": "project.html",
-    "title": "Project X",
+    "title": "Turkish Higher Education Analysis",
     "section": "",
-    "text": "Welcome to my/our project page.\nKeep an eye on this space to stay updated with my project activities.\n(The titles below are provided as examples; please feel free to adjust them as necessary.)"
+    "text": "YÖK Atlas · R Analysis\n    \n    Exploring universities, departments, and regional trends using YÖK Atlas data\n    \n      Regional distribution\n      Score trends\n      Academician analysis\n      Quota / preference\n    \n  \n  \n    2018–2020thestatspackage data\n    2022–2025YÖK AtlasAPI data\n    FocusEngineeringall programs\n    OutputForecast + Ranking2025–2026 projection"
   },
   {
     "objectID": "project.html#data-source",
     "href": "project.html#data-source",
-    "title": "Project X",
+    "title": "Turkish Higher Education Analysis",
     "section": "2.1 Data Source",
-    "text": "2.1 Data Source\nxxxxxx"
+    "text": "2.1 Data Source"
   },
   {
     "objectID": "project.html#general-information-about-data",
     "href": "project.html#general-information-about-data",
-    "title": "Project X",
+    "title": "Turkish Higher Education Analysis",
     "section": "2.2 General Information About Data",
-    "text": "2.2 General Information About Data\nxxxxxx"
+    "text": "2.2 General Information About Data\n“Thestats” dataset includes information such as entrance scores, ranking positions, quotas, student demographics, and program-specific characteristics across different universities and departments. The dataset contains 25,652 rows and 23 columns, covering three academic years (2018, 2019, 2020) and all universities and departments across Turkey.\nThe YÖK Atlas dataset contains 1,109 records across 12 variables, capturing program-level placement information for engineering departments in Turkish universities, including university name, department, city, university type (public/private/KKTC/abroad), scholarship status, teaching format, quota, number of enrolled students, success ranking (TBS), and base score — with historical values available for each program across 2022–2025."
   },
   {
     "objectID": "project.html#reason-of-choice",
     "href": "project.html#reason-of-choice",
-    "title": "Project X",
+    "title": "Turkish Higher Education Analysis",
     "section": "2.3 Reason of Choice",
-    "text": "2.3 Reason of Choice\nxxxxxx"
+    "text": "2.3 Reason of Choice\nThis topic is selected due to its relevance to higher education decision-making and its potential to provide insights for students and academic institutions."
   },
   {
     "objectID": "project.html#preprocessing",
     "href": "project.html#preprocessing",
-    "title": "Project X",
+    "title": "Turkish Higher Education Analysis",
     "section": "2.4 Preprocessing",
-    "text": "2.4 Preprocessing\nxxxxxx"
+    "text": "2.4 Preprocessing\nThe first data is imported into R using the “thestats” package. The data was imported directly into R using the list_uni(), list_dept(), and list_score() functions from the package. No raw file download (xlsx, csv) was required, as the package provides ready-to-use query functions. Several preprocessing steps were applied before analysis.\nPreprocessing Steps:\n\nType conversion: Converting data into appropriate formats (e.g., numeric, categorical). All numeric columns were stored as character strings with Turkish decimal separators (comma instead of period). The gsub() function is used to replace commas with periods, followed by as.numeric() conversion.\nMissing value handling: Some cells contained “—” instead of numeric values, indicating missing or unreported data. Replacement with NA values. Also rows with NA columns were removed on a per-analysis basis to preserve as much data as possible.\nFiltering: Filtering relevant years or departments\nNew Variables: Creating new variables if necessary (e.g., grouping universities by type or region)\n\nThe other dataset collected using the “yokatlas-py” Python package, integrated into R via the reticulate library.\n\nPreprocessing Steps:\n\nFlattening nested data: API responses is returned as nested Python lists and converted into a structured tabular dataframe using a custom parse_row() function combined with bind_rows().\nType conversion: Numeric fields such as quota, enrollment, base score, and success ranking were explicitly cast to numeric. Composite quota fields formatted as “15+0+2” were parsed using regex to extract only the primary figure.\nCharacter encoding: Turkish-specific characters returned as Unicode escape sequences (e.g. \\u00fc) were decoded using stri_unescape_unicode().\nFiltering: Records with missing base scores or quotas, distance-learning programs, and programs with zero enrollment were excluded, reducing the dataset from 1,109 to 814 records.\nGrouping: A categorical grouping variable is created distinguishing between public universities, funded private universities, and fee-paying private universities to enable meaningful comparisons across institutional types.\n\nPlanned analyses include cross-department score comparisons, public versus private university differences, city-level distributions, year-on-year trend analysis, score forecasting for 2025–2026, and university prestige rankings based on success rankings."
   },
   {
     "objectID": "project.html#exploratory-data-analysis",
     "href": "project.html#exploratory-data-analysis",
-    "title": "Project X",
+    "title": "Turkish Higher Education Analysis",
     "section": "3.1 Exploratory Data Analysis",
-    "text": "3.1 Exploratory Data Analysis\nxxxxxx"
+    "text": "3.1 Exploratory Data Analysis"
   },
   {
     "objectID": "project.html#trend-analysis",
     "href": "project.html#trend-analysis",
-    "title": "Project X",
+    "title": "Turkish Higher Education Analysis",
     "section": "3.2 Trend Analysis",
     "text": "3.2 Trend Analysis\nxxxxxx"
   },
   {
     "objectID": "project.html#model-fitting",
     "href": "project.html#model-fitting",
-    "title": "Project X",
+    "title": "Turkish Higher Education Analysis",
     "section": "3.3 Model Fitting",
     "text": "3.3 Model Fitting\nxxxxxx"
   },
   {
     "objectID": "project.html#results",
     "href": "project.html#results",
-    "title": "Project X",
+    "title": "Turkish Higher Education Analysis",
     "section": "3.4 Results",
     "text": "3.4 Results\nxxxxxx"
   },
@@ -173,5 +173,89 @@
     "crumbs": [
       "Assignment 1"
     ]
+  },
+  {
+    "objectID": "project.html#visualization-of-universities-departments-and-regional-distributions-using-yök-atlas-data",
+    "href": "project.html#visualization-of-universities-departments-and-regional-distributions-using-yök-atlas-data",
+    "title": "🎓 A Data-Driven Analysis of Turkish Higher Education Statistics",
+    "section": "Visualization of Universities, Departments, and Regional Distributions using YÖK Atlas Data",
+    "text": "Visualization of Universities, Departments, and Regional Distributions using YÖK Atlas Data\n📍 Regions\n👩‍🎓 Academics & Students\n📈 Trending Departments\n\n\n\n🎓 Turkish Higher Education Analysis\n\n\nExploring universities, departments, and regional trends using YÖK Atlas data"
+  },
+  {
+    "objectID": "project.html#project-highlights",
+    "href": "project.html#project-highlights",
+    "title": "\n🎓👩‍🎓 Turkish Higher Education Analysis 📚🥇\n",
+    "section": "🚀 Project Highlights",
+    "text": "🚀 Project Highlights\n\n\n\n📍 Regions\n\n\nExplore the geographical distribution of universities across Turkey.\n\n\n\n\n👩‍🎓 Academics & Students\n\n\nAnalyze the structure of academic staff and student populations.\n\n\n\n\n📈 Trends\n\n\nIdentify emerging and popular academic fields."
+  },
+  {
+    "objectID": "project.html#what-this-project-covers",
+    "href": "project.html#what-this-project-covers",
+    "title": "\n🎓 A Data-Driven Analysis of Turkish Higher Education Statistics\n",
+    "section": "What This Project Covers",
+    "text": "What This Project Covers\n\nState vs foundation university comparisons\n\nCity-based university density\n\nStudent mobility patterns\n\nDepartment score ranges\n\nMost preferred universities\n\nGender distribution across departments\n\nAcademic staff comparisons\n\nDepartment ranking trends"
+  },
+  {
+    "objectID": "project.html#project-insights",
+    "href": "project.html#project-insights",
+    "title": "🎓 A Data-Driven Analysis of Turkish Higher Education Statistics",
+    "section": "🚀 Project Insights",
+    "text": "🚀 Project Insights\n\n\n\n📍 Regional Distribution\n\n\nExplore universities across regions.\n\n \n\n🏙️ City Density\n\n\nUniversity concentration by city.\n\n \n\n👩‍🎓 Students & Academics\n\n\nPopulation and structure analysis.\n\n \n\n📊 Score Analysis\n\n\nDepartment score ranges.\n\n \n\n⭐ Top Preferences\n\n\nMost selected universities.\n\n \n\n📈 Trending Fields\n\n\nEmerging departments."
+  },
+  {
+    "objectID": "project.html#scope-of-the-project",
+    "href": "project.html#scope-of-the-project",
+    "title": "🎓 A Data-Driven Analysis of Turkish Higher Education Statistics",
+    "section": "🧭 Scope of the Project",
+    "text": "🧭 Scope of the Project\n\n\n\n🏫\n\n\nComparison of state and foundation universities\n\n\n\n\n🌍\n\n\nStudent mobility across regions\n\n\n\n\n⚖️\n\n\nGender distribution across departments\n\n\n\n\n👨‍🏫\n\n\nAcademic staff comparisons\n\n\n\n\n📚\n\n\nDepartment ranking trends"
+  },
+  {
+    "objectID": "project.html#project-overview-and-scope",
+    "href": "project.html#project-overview-and-scope",
+    "title": "🎓 A Data-Driven Analysis of Turkish Higher Education Statistics",
+    "section": "📊 Project Overview and Scope",
+    "text": "📊 Project Overview and Scope"
+  },
+  {
+    "objectID": "project.html#regions",
+    "href": "project.html#regions",
+    "title": "🎓 A Data-Driven Analysis of Turkish Higher Education Statistics",
+    "section": "📍 Regional Distribution",
+    "text": "📍 Regional Distribution\n\nContent here…"
+  },
+  {
+    "objectID": "project.html#cities",
+    "href": "project.html#cities",
+    "title": "🎓 A Data-Driven Analysis of Turkish Higher Education Statistics",
+    "section": "🏙️ City Density",
+    "text": "🏙️ City Density\n\nContent here…"
+  },
+  {
+    "objectID": "project.html#students",
+    "href": "project.html#students",
+    "title": "🎓 A Data-Driven Analysis of Turkish Higher Education Statistics",
+    "section": "👩‍🎓 Students & Academics",
+    "text": "👩‍🎓 Students & Academics\n\nContent here…"
+  },
+  {
+    "objectID": "project.html#scores",
+    "href": "project.html#scores",
+    "title": "🎓 A Data-Driven Analysis of Turkish Higher Education Statistics",
+    "section": "📊 Score Analysis",
+    "text": "📊 Score Analysis\n\nContent here…"
+  },
+  {
+    "objectID": "project.html#preferences",
+    "href": "project.html#preferences",
+    "title": "🎓 A Data-Driven Analysis of Turkish Higher Education Statistics",
+    "section": "⭐ Top Preferences",
+    "text": "⭐ Top Preferences\n\nContent here…"
+  },
+  {
+    "objectID": "project.html#trends",
+    "href": "project.html#trends",
+    "title": "🎓 A Data-Driven Analysis of Turkish Higher Education Statistics",
+    "section": "📈 Trending Fields",
+    "text": "📈 Trending Fields\n\nContent here…"
   }
 ]

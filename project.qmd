@@ -1,44 +1,165 @@
 ---
-title: "Project X"
+title: ""
 ---
 
-Welcome to my/our project page.
+```{=html}
+<style>
+  /* hero kartının içindeki h1'e dokunma */
+  .hero-top h1 { font-size: 26px !important; padding: 0 !important; background: none !important; border-radius: 0 !important; margin: 0 0 10px !important; }
 
-Keep an eye on this space to stay updated with my project activities.
+  h1 { background: #26215C; color: #EEEDFE !important; padding: 14px 26px; border-radius: 8px; font-size: 26px !important; font-weight: 500 !important; margin-top: 40px !important; }
+  h2 { border-left: 4px solid #534AB7; background: #f4f3fd; color: #26215C !important; padding: 10px 18px; border-radius: 0 6px 6px 0; font-size: 19px !important; font-weight: 600 !important; margin-top: 28px !important; }
+  h3 { color: #534AB7 !important; font-size: 16px !important; font-weight: 600 !important; border-bottom: 1px solid #e5e7eb; padding-bottom: 4px; margin-top: 20px !important; }
+</style>
+```
 
-(The titles below are provided as examples; please feel free to adjust them as necessary.)
+```{=html}
+<style>
+  .hero-wrap { border-radius: 12px; overflow: hidden; background: #ffffff; border: 0.5px solid #e5e7eb; }
+  .hero-top { background: #26215C; padding: 36px 40px 32px; }
+  .hero-top .tag { font-size: 12px; font-weight: 500; color: #AFA9EC; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; }
+  .hero-top h1 { font-size: 26px; font-weight: 500; color: #EEEDFE; margin: 0 0 10px; line-height: 1.3; }
+  .hero-top .sub { font-size: 14px; color: #AFA9EC; margin: 0 0 24px; line-height: 1.7; max-width: 520px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { font-size: 12px; padding: 4px 13px; border-radius: 20px; border: 0.5px solid #534AB7; color: #CECBF6; background: rgba(83,74,183,0.25); }
+  .hero-bottom { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .titem { padding: 20px 22px; border-left: 0.5px solid #e5e7eb; border-top: 3px solid transparent; transition: background 0.2s ease; }
+  .titem:first-child { border-left: none; }
+  .titem:hover { background: #f9fafb; }
+  .t1 { border-top-color: #378ADD; } .t1 .yr { color: #185FA5; }
+  .t2 { border-top-color: #1D9E75; } .t2 .yr { color: #0F6E56; }
+  .t3 { border-top-color: #EF9F27; } .t3 .yr { color: #854F0B; }
+  .t4 { border-top-color: #7F77DD; } .t4 .yr { color: #534AB7; }
+  .titem .yr { font-size: 11px; margin-bottom: 6px; font-weight: 500; }
+  .titem .val { font-size: 15px; font-weight: 500; color: #111827; }
+  .titem .lbl { font-size: 12px; color: #6b7280; margin-top: 3px; }
+</style>
+<div class="hero-wrap">
+  <div class="hero-top">
+    <div class="tag">YÖK Atlas · R Analysis</div>
+    <h1>Turkish Higher Education Analysis</h1>
+    <p class="sub">Exploring universities, departments, and regional trends using YÖK Atlas data</p>
+    <div class="pills">
+      <span class="pill">Regional distribution</span>
+      <span class="pill">Score trends</span>
+      <span class="pill">Academician analysis</span>
+      <span class="pill">Quota / preference</span>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="titem t1"><div class="yr">2018–2020</div><div class="val">thestats</div><div class="lbl">package data</div></div>
+    <div class="titem t2"><div class="yr">2022–2025</div><div class="val">YÖK Atlas</div><div class="lbl">API data</div></div>
+    <div class="titem t3"><div class="yr">Focus</div><div class="val">Engineering</div><div class="lbl">all programs</div></div>
+    <div class="titem t4"><div class="yr">Output</div><div class="val">Forecast + Ranking</div><div class="lbl">2025–2026 projection</div></div>
+  </div>
+</div>
+```
 
-# 1. Project Overview and Scope
+<p style="text-align: center; margin: 40px 0; perspective: 1000px;">
 
-xxxxxx
+<img src="image.jpg" onmouseover="this.style.transform=&apos;rotateX(0deg) scale(1.05)&apos;; this.style.boxShadow=&apos;0 30px 80px rgba(0,0,0,0.3), 0 10px 30px rgba(0,0,0,0.2)&apos;;" onmouseout="this.style.transform=&apos;rotateX(4deg) scale(1.02)&apos;; this.style.boxShadow=&apos;0 20px 60px rgba(0,0,0,0.25), 0 8px 20px rgba(0,0,0,0.15)&apos;;" style="max-     border-radius: 20px;     box-shadow: 0 20px 60px rgba(0,0,0,0.25), 0 8px 20px rgba(0,0,0,0.15);     transform: rotateX(4deg) scale(1.02);     transition: transform 0.4s ease, box-shadow 0.4s ease;     display: inline-block;   " width="453"/>
 
-# 2. Data
+</p>
 
-xxxxxx
+# 1. 📝 Project Overview and Scope
+
+This project aims to analyze data obtained from the YÖK Atlas platform by examining universities, academics, departments, and regional distributions. Based on the analyzed data, the objectives include creating future projections, comparing universities from various perspectives, and identifying trending departments.
+
+The main goal is to apply R to conduct a deep analysis that reveals trends in Turkish higher education.
+
+**Potential Analyses**
+
+Based on the available variables, the following analyses are planned:
+
+-   Comparison of the number of state and private universities by region,
+
+-   University density by city,
+
+-   Student flows from regions to universities,
+
+-   Minimum and maximum entrance scores by department,
+
+-   The universities most frequently chosen as first preference,
+
+-   Gender distribution (female–male) by department within universities,
+
+-   Comparison of the number of academics in state and private universities,
+
+-   Yearly trends in placement scores and quotas
+
+-   Most and least preferred departments by choice order etc.
+
+# 2. 📊 Data
+
+Within the scope of the project, two different datasets will be used in order to conduct more detailed analyses. One of them is obtained from <https://github.com/analyticsresearchlab/thestats>. Here, "*thestats*" package, has been developed by Mustafa Cavus and Olgun Aydin from the YÖK Atlas platform (yokatlas.yok.gov.tr), which provides comprehensive statistics on Turkish higher education. It provides a structured interface from YÖK Atlas covering the period from 2018 to 2020 that includes placement scores, student gender distribution, regional origins of students, academic staff counts, and department preference rankings.
+
+The other dataset is directly obtained from YÖK Atlas ([yokatlas.yok.gov.tr](https://yokatlas.yok.gov.tr/)), the official university placement and statistics platform maintained by Turkey's Council of Higher Education (YÖK). The dataset spans 2022 to 2025, with detailed placement data for all undergraduate programs in Turkey, including scores, rankings, quotas, and enrollment figures.
+
+<!-- four variables recorded annually for each program: the base score (score of the last admitted student), the success ranking (TBS — the national ranking of the last admitted student), the quota (number of available places), and the number of enrolled students. This longitudinal structure allows for year-on-year trend analysis and score forecasting across departments and universities. -->
+
+These datasets is appropriate for the project as they are large, structured, and contain multiple variables that enable comprehensive analysis.
 
 ## 2.1 Data Source
 
-xxxxxx
-
 ## 2.2 General Information About Data
 
-xxxxxx
+"*Thestats*" dataset includes information such as entrance scores, ranking positions, quotas, student demographics, and program-specific characteristics across different universities and departments. The dataset contains 25,652 rows and 23 columns, covering three academic years (2018, 2019, 2020) and all universities and departments across Turkey.
+
+The YÖK Atlas dataset contains 1,109 records across 12 variables, capturing program-level placement information for engineering departments in Turkish universities, including university name, department, city, university type (public/private/KKTC/abroad), scholarship status, teaching format, quota, number of enrolled students, success ranking (TBS), and base score — with historical values available for each program across 2022–2025.
 
 ## 2.3 Reason of Choice
 
-xxxxxx
+This topic is selected due to its relevance to higher education decision-making and its potential to provide insights for students and academic institutions.
 
 ## 2.4 Preprocessing
 
-xxxxxx
+The first data is imported into R using the "*thestats"* package. The data was imported directly into R using the list_uni(), list_dept(), and list_score() functions from the package. No raw file download (xlsx, csv) was required, as the package provides ready-to-use query functions. Several preprocessing steps were applied before analysis.
 
-# 3. Analysis
+**Preprocessing Steps:**
 
-xxxxxx
+1.  **Type conversion:** Converting data into appropriate formats (e.g., numeric, categorical). All numeric columns were stored as character strings with Turkish decimal separators (comma instead of period). The gsub() function is used to replace commas with periods, followed by as.numeric() conversion.
+
+2.  **Missing value handling**: Some cells contained "---" instead of numeric values, indicating missing or unreported data. Replacement with NA values. Also rows with NA columns were removed on a per-analysis basis to preserve as much data as possible.
+
+3.  **Filtering:** Filtering relevant years or departments
+
+4.  **New Variables:** Creating new variables if necessary (e.g., grouping universities by type or region)
+
+The other dataset collected using the "yokatlas-py" Python package, integrated into R via the reticulate library. 
+
+<!-- The search_lisans_programs() function was queried for all engineering-related programs, returning a raw dataset of 1,109 records across 12 variables. -->
+
+**Preprocessing Steps:**
+
+1.  **Flattening nested data:** API responses is returned as nested Python lists and converted into a structured tabular dataframe using a custom parse_row() function combined with bind_rows().
+
+2.  **Type conversion:** Numeric fields such as quota, enrollment, base score, and success ranking were explicitly cast to numeric. Composite quota fields formatted as "15+0+2" were parsed using regex to extract only the primary figure.
+
+3.  **Character encoding:** Turkish-specific characters returned as Unicode escape sequences (e.g. \\u00fc) were decoded using stri_unescape_unicode().
+
+4.  **Filtering:** Records with missing base scores or quotas, distance-learning programs, and programs with zero enrollment were excluded, reducing the dataset from 1,109 to 814 records.
+
+5.  **Grouping:** A categorical grouping variable is created distinguishing between public universities, funded private universities, and fee-paying private universities to enable meaningful comparisons across institutional types.
+
+    <!--#  -->
+
+    Planned analyses include cross-department score comparisons, public versus private university differences, city-level distributions, year-on-year trend analysis, score forecasting for 2025–2026, and university prestige rankings based on success rankings.
+
+# 3. 🧭Analysis
 
 ## 3.1 Exploratory Data Analysis
 
-xxxxxx
+<!-- In the exploratory phase, I will: -->
+
+<!-- -   Examine the distribution of key variables such as scores and rankings -->
+
+<!-- -   Visualize trends over time -->
+
+<!-- -   Compare universities and departments using summary statistics -->
+
+<!-- -   Identify patterns and potential relationships between variables -->
+
+<!-- Initial visualizations may include histograms, boxplots, and scatter plots. -->
 
 ## 3.2 Trend Analysis
 
@@ -52,6 +173,6 @@ xxxxxx
 
 xxxxxx
 
-# 4. Results and Key Takeaways
+# 4. 💹 Results and Key Takeaways
 
 xxxxxx
