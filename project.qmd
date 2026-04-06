@@ -97,7 +97,7 @@ The other dataset is directly obtained from YÖK Atlas ([yokatlas.yok.gov.tr](ht
 
 <!-- four variables recorded annually for each program: the base score (score of the last admitted student), the success ranking (TBS — the national ranking of the last admitted student), the quota (number of available places), and the number of enrolled students. This longitudinal structure allows for year-on-year trend analysis and score forecasting across departments and universities. -->
 
-These datasets is appropriate for the project as they are large, structured, and contain multiple variables that enable comprehensive analysis.
+These datasets are appropriate for the project as they are large, structured, and contain multiple variables that enable comprehensive analysis.
 
 ## 2.1 Data Source
 
