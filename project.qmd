@@ -50,7 +50,7 @@ title: ""
     <div class="titem t1"><div class="yr">2018–2020</div><div class="val">thestats</div><div class="lbl">package data</div></div>
     <div class="titem t2"><div class="yr">2022–2025</div><div class="val">YÖK Atlas</div><div class="lbl">API data</div></div>
     <div class="titem t3"><div class="yr">Focus</div><div class="val">Engineering</div><div class="lbl">all programs</div></div>
-    <div class="titem t4"><div class="yr">Output</div><div class="val">Forecast + Ranking</div><div class="lbl">2025–2026 projection</div></div>
+    <div class="titem t4"><div class="yr">Output</div><div class="val">Forecast + Ranking</div><div class="lbl">2026 projection</div></div>
   </div>
 </div>
 ```
