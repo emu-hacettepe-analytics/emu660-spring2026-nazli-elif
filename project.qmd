@@ -143,7 +143,7 @@ The other dataset collected using the "yokatlas-py" Python package, integrated i
 
     <!--#  -->
 
-    Planned analyses include cross-department score comparisons, public versus private university differences, city-level distributions, year-on-year trend analysis, score forecasting for 2025–2026, and university prestige rankings based on success rankings.
+    Planned analyses include cross-department score comparisons, public versus private university differences, city-level distributions, year-on-year trend analysis, score forecasting for 2026, and university prestige rankings based on success rankings.
 
 # 3. 🧭Analysis
 
