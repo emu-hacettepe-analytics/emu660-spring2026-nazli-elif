@@ -77,11 +77,9 @@ Based on the available variables, the following analyses are planned:
 -   University density by city,
 -   Student flows from regions to universities,
 -   Minimum and maximum entrance scores by department,
--   The universities most frequently chosen as first preference,
 -   Gender distribution (female–male) by department within universities,
 -   Comparison of the number of academics in state and private universities,
 -   Yearly trends in placement scores and quotas,
--   Most and least preferred departments by choice order etc.
 
 # 📊 Data
 
@@ -135,7 +133,6 @@ Planned analyses include cross-department score comparisons, public versus priva
 
 # 🧭Analysis
 
-## Exploratory Data Analysis
 
 ```{r libraries-extra, include=FALSE}
 library(dplyr)
@@ -298,12 +295,12 @@ score_clean %>%
 ```
 
 ::: {.callout-note appearance="minimal"}
-The chart displays the top 10 highest and bottom 10 lowest-scoring departments based on median placement scores across all Turkish universities, with a minimum of 30 programs per department to ensure statistical reliability. Pilotage, Medicine, and Dentist/Dentistry dominate the high end, reflecting the highly competitive nature of health and aviation fields. Notably, Dentist and Dentistry appear separately due to minor naming inconsistencies in the dataset — they effectively represent the same field. On the lower end, departments such as Archaeology, Finance and Banking, and Philosophy show median scores around 220–236, indicating lower competition thresholds. The wide gap between high (\~430–493) and low (\~211–236) scoring departments highlights the stark selectivity differences across disciplines in Turkish higher education.
+The chart displays the top 10 highest and bottom 10 lowest-scoring departments based on median placement scores across all Turkish universities, with a minimum of 30 programs per department to ensure statistical reliability. Pilotage, Medicine, and Dentist/Dentistry dominate the high end, reflecting the highly competitive nature of health and aviation fields. Notably, Dentist and Dentistry appear separately due to minor naming inconsistencies in the dataset — they effectively represent the same field. On the lower end, departments such as Archaeology, Finance and Banking, and Philosophy show median scores around 220–236, indicating lower competition thresholds. Date (IO)" refers to the History department's second-shift (evening) program, which consistently attracts lower placement scores due to its paid and part-time nature — distinct from the English-medium History program appearing in the high-scoring group. The wide gap between high (\~430–493) and low (\~211–236) scoring departments highlights the stark selectivity differences across disciplines in Turkish higher education.
 :::
 
 ------------------------------------------------------------------------
 
-## 2.2 Score Range (Min-Max) by Department (Top 15)
+## 2.2 Score Range (Min-Max) by Department (Top 10)
 
 > **Dataset:** theStats \| **Year:** All years (cumulative)
 
@@ -343,7 +340,7 @@ score_summary2 <- score_clean2 %>%
   ) %>%
   filter(n_prog >= 30) %>%
   arrange(desc(med_taban)) %>%
-  slice(1:15)
+  slice(1:10)
 
 score_summary2 %>%
   ggplot() +
@@ -366,7 +363,7 @@ score_summary2 %>%
 ```
 
 ::: {.callout-note appearance="minimal"}
-This chart shows the realistic placement score spread for the top 15 departments by median score. Each line spans from the 10th percentile threshold score (red dot) to the 90th percentile ceiling score (green dot), with the diamond marking the median. Departments like Pilotage and Computer Engineering show wide ranges — meaning the same department varies dramatically in selectivity depending on the university. For example, Computer Engineering's red dot sits near 290 while its green dot exceeds 530, a spread of over 240 points. In contrast, Medicine and Dentistry show narrower ranges, suggesting more uniform selectivity across institutions. These patterns confirm that institutional prestige is the primary driver of score variation within a given field.
+This chart shows the realistic placement score spread for the top 10 departments by median score. Each line spans from the 10th percentile threshold score (red dot) to the 90th percentile ceiling score (green dot), with the diamond marking the median. Departments like Pilotage and Computer Engineering show wide ranges — meaning the same department varies dramatically in selectivity depending on the university. For example, Computer Engineering's red dot sits near 290 while its green dot exceeds 530, a spread of over 240 points. In contrast, Medicine and Dentistry show narrower ranges, suggesting more uniform selectivity across institutions. These patterns confirm that institutional prestige is the primary driver of score variation within a given field.
 :::
 
 ------------------------------------------------------------------------

@@ -347,10 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#reason-of-choice" id="toc-reason-of-choice" class="nav-link" data-scroll-target="#reason-of-choice">1.2 Reason of Choice</a></li>
   <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing">1.3 Preprocessing</a></li>
   </ul></li>
-  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">🧭Analysis</a>
-  <ul class="collapse">
-  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
-  </ul></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">🧭Analysis</a></li>
   <li><a href="#university-distribution-and-regional-density" id="toc-university-distribution-and-regional-density" class="nav-link" data-scroll-target="#university-distribution-and-regional-density">1. University Distribution and Regional Density</a>
   <ul class="collapse">
   <li><a href="#number-of-universities-by-region" id="toc-number-of-universities-by-region" class="nav-link" data-scroll-target="#number-of-universities-by-region">1.1 Number of Universities by Region</a></li>
@@ -360,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#department-level-score-analysis" id="toc-department-level-score-analysis" class="nav-link" data-scroll-target="#department-level-score-analysis">2. Department-Level Score Analysis</a>
   <ul class="collapse">
   <li><a href="#departments-with-highest-and-lowest-scores" id="toc-departments-with-highest-and-lowest-scores" class="nav-link" data-scroll-target="#departments-with-highest-and-lowest-scores">2.1 Departments with Highest and Lowest Scores</a></li>
-  <li><a href="#score-range-min-max-by-department-top-15" id="toc-score-range-min-max-by-department-top-15" class="nav-link" data-scroll-target="#score-range-min-max-by-department-top-15">2.2 Score Range (Min-Max) by Department (Top 15)</a></li>
+  <li><a href="#score-range-min-max-by-department-top-10" id="toc-score-range-min-max-by-department-top-10" class="nav-link" data-scroll-target="#score-range-min-max-by-department-top-10">2.2 Score Range (Min-Max) by Department (Top 10)</a></li>
   <li><a href="#engineering-departments-score-comparison-yokatlas" id="toc-engineering-departments-score-comparison-yokatlas" class="nav-link" data-scroll-target="#engineering-departments-score-comparison-yokatlas">2.3 Engineering Departments Score Comparison (YOKAtlas)</a></li>
   <li><a href="#industrial-engineering---university-ranking-lollipop" id="toc-industrial-engineering---university-ranking-lollipop" class="nav-link" data-scroll-target="#industrial-engineering---university-ranking-lollipop">2.4 Industrial Engineering - University Ranking (Lollipop)</a></li>
   </ul></li>
@@ -486,11 +483,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>University density by city,</li>
 <li>Student flows from regions to universities,</li>
 <li>Minimum and maximum entrance scores by department,</li>
-<li>The universities most frequently chosen as first preference,</li>
 <li>Gender distribution (female–male) by department within universities,</li>
 <li>Comparison of the number of academics in state and private universities,</li>
 <li>Yearly trends in placement scores and quotas,</li>
-<li>Most and least preferred departments by choice order etc.</li>
 </ul>
 </section>
 <section id="data" class="level1">
@@ -534,9 +529,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="analysis" class="level1">
 <h1>🧭Analysis</h1>
-<section id="exploratory-data-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h2>
-</section>
 </section>
 <section id="university-distribution-and-regional-density" class="level1">
 <h1>1. University Distribution and Regional Density</h1>
@@ -747,14 +739,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>The chart displays the top 10 highest and bottom 10 lowest-scoring departments based on median placement scores across all Turkish universities, with a minimum of 30 programs per department to ensure statistical reliability. Pilotage, Medicine, and Dentist/Dentistry dominate the high end, reflecting the highly competitive nature of health and aviation fields. Notably, Dentist and Dentistry appear separately due to minor naming inconsistencies in the dataset — they effectively represent the same field. On the lower end, departments such as Archaeology, Finance and Banking, and Philosophy show median scores around 220–236, indicating lower competition thresholds. The wide gap between high (~430–493) and low (~211–236) scoring departments highlights the stark selectivity differences across disciplines in Turkish higher education.</p>
+<p>The chart displays the top 10 highest and bottom 10 lowest-scoring departments based on median placement scores across all Turkish universities, with a minimum of 30 programs per department to ensure statistical reliability. Pilotage, Medicine, and Dentist/Dentistry dominate the high end, reflecting the highly competitive nature of health and aviation fields. Notably, Dentist and Dentistry appear separately due to minor naming inconsistencies in the dataset — they effectively represent the same field. On the lower end, departments such as Archaeology, Finance and Banking, and Philosophy show median scores around 220–236, indicating lower competition thresholds. Date (IO)” refers to the History department’s second-shift (evening) program, which consistently attracts lower placement scores due to its paid and part-time nature — distinct from the English-medium History program appearing in the high-scoring group. The wide gap between high (~430–493) and low (~211–236) scoring departments highlights the stark selectivity differences across disciplines in Turkish higher education.</p>
 </div>
 </div>
 </div>
 <hr>
 </section>
-<section id="score-range-min-max-by-department-top-15" class="level2">
-<h2 class="anchored" data-anchor-id="score-range-min-max-by-department-top-15">2.2 Score Range (Min-Max) by Department (Top 15)</h2>
+<section id="score-range-min-max-by-department-top-10" class="level2">
+<h2 class="anchored" data-anchor-id="score-range-min-max-by-department-top-10">2.2 Score Range (Min-Max) by Department (Top 10)</h2>
 <blockquote class="blockquote">
 <p><strong>Dataset:</strong> theStats | <strong>Year:</strong> All years (cumulative)</p>
 </blockquote>
@@ -796,7 +788,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n_prog <span class="sc">&gt;=</span> <span class="dv">30</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(med_taban)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
 <span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>score_summary2 <span class="sc">%&gt;%</span></span>
 <span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
@@ -831,7 +823,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>This chart shows the realistic placement score spread for the top 15 departments by median score. Each line spans from the 10th percentile threshold score (red dot) to the 90th percentile ceiling score (green dot), with the diamond marking the median. Departments like Pilotage and Computer Engineering show wide ranges — meaning the same department varies dramatically in selectivity depending on the university. For example, Computer Engineering’s red dot sits near 290 while its green dot exceeds 530, a spread of over 240 points. In contrast, Medicine and Dentistry show narrower ranges, suggesting more uniform selectivity across institutions. These patterns confirm that institutional prestige is the primary driver of score variation within a given field.</p>
+<p>This chart shows the realistic placement score spread for the top 10 departments by median score. Each line spans from the 10th percentile threshold score (red dot) to the 90th percentile ceiling score (green dot), with the diamond marking the median. Departments like Pilotage and Computer Engineering show wide ranges — meaning the same department varies dramatically in selectivity depending on the university. For example, Computer Engineering’s red dot sits near 290 while its green dot exceeds 530, a spread of over 240 points. In contrast, Medicine and Dentistry show narrower ranges, suggesting more uniform selectivity across institutions. These patterns confirm that institutional prestige is the primary driver of score variation within a given field.</p>
 </div>
 </div>
 </div>
