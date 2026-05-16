@@ -377,10 +377,10 @@ load("C:/Users/ASUS/Documents/yokatlas_objects.RData")
 
 df_muh_temiz <- df_temiz %>%
   mutate(grup = case_when(
-    ucret_burs == "Ücretsiz"      ~ "State (Free)",
-    ucret_burs == "Burslu"        ~ "Private (Scholarship)",
-    ucret_burs == "%50 İndirimli" ~ "Private (50% Discount)",
-    ucret_burs == "Ücretli"       ~ "Private (Fee-paying)"
+    str_detect(ucret_burs, "cretsiz")                                    ~ "State (Free)",
+    str_detect(ucret_burs, "Burslu")                                     ~ "Private (Scholarship)",
+    str_detect(ucret_burs, "ndirimli")                                   ~ "Private (50% Discount)",
+    str_detect(ucret_burs, "cretli") & !str_detect(ucret_burs, "cretsiz") ~ "Private (Fee-paying)"
   ))
 
 bolum_ozet <- df_muh_temiz %>%
@@ -427,10 +427,10 @@ df_endustri_temiz <- df_temiz %>%
   filter(grepl("^End", bolum),
          !grepl("netim", bolum)) %>%
   mutate(grup = case_when(
-    ucret_burs == "Ücretsiz"      ~ "State (Free)",
-    ucret_burs == "Burslu"        ~ "Private (Scholarship)",
-    ucret_burs == "%50 İndirimli" ~ "Private (50% Discount)",
-    ucret_burs == "Ücretli"       ~ "Private (Fee-paying)"
+    str_detect(ucret_burs, "cretsiz")                                    ~ "State (Free)",
+    str_detect(ucret_burs, "Burslu")                                     ~ "Private (Scholarship)",
+    str_detect(ucret_burs, "ndirimli")                                   ~ "Private (50% Discount)",
+    str_detect(ucret_burs, "cretli") & !str_detect(ucret_burs, "cretsiz") ~ "Private (Fee-paying)"
   ))
 
 df_endustri_temiz %>%
@@ -575,10 +575,10 @@ trend_df_endustri <- bind_rows(lapply(raw, function(p) {
 })) %>%
   filter(!is.na(taban_puan), taban_puan > 0) %>%
   mutate(grup = case_when(
-    ucret_burs == "Ücretsiz"      ~ "State (Free)",
-    ucret_burs == "Burslu"        ~ "Private (Scholarship)",
-    ucret_burs == "%50 İndirimli" ~ "Private (50% Discount)",
-    ucret_burs == "Ücretli"       ~ "Private (Fee-paying)"
+    str_detect(ucret_burs, "cretsiz")                                    ~ "State (Free)",
+    str_detect(ucret_burs, "Burslu")                                     ~ "Private (Scholarship)",
+    str_detect(ucret_burs, "ndirimli")                                   ~ "Private (50% Discount)",
+    str_detect(ucret_burs, "cretli") & !str_detect(ucret_burs, "cretsiz") ~ "Private (Fee-paying)"
   ))
 
 trend_df_endustri %>%
@@ -597,12 +597,12 @@ trend_df_endustri %>%
   )) +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  labs(title = "Annual Average Score Trend by University Type - Industrial Engineering",
+  labs(title = "Annual Average Score Trend by University Type - All Engineering",
        x = "Year", y = "Average Base Score", color = "")
 ```
 
 ::: {.callout-note appearance="minimal"}
-State universities consistently show the highest average scores across all years. All three groups show an upward trend over time, indicating growing demand for engineering programs.
+Private scholarship programs consistently show the highest average scores, though with notable year-to-year fluctuation. State universities maintain a stable upward trend, while fee-paying and discounted private programs cluster at the lower end with similar score profiles. The 2024 dip across all categories likely reflects a system-wide shift in exam scoring or quota changes.
 :::
 
 ------------------------------------------------------------------------
@@ -1118,7 +1118,7 @@ library(stringi)
 top12_uni_puan <- df_muh_temiz %>%
   filter(!is.na(taban_puan), taban_puan > 0,
          grepl("hendisli", bolum),
-         ucret_burs != "Ücretli"
+         !str_detect(ucret_burs, "cretli") | str_detect(ucret_burs, "cretsiz")
   ) %>%
   group_by(universite, uni_turu) %>%
   summarise(
@@ -1171,7 +1171,7 @@ library(stringr)
 
 common_depts <- df_muh_temiz %>%
   filter(universite %in% top12_uni_puan$universite,
-         ucret_burs == "Ücretsiz") %>%
+         str_detect(ucret_burs, "cretsiz")) %>%
   group_by(bolum) %>%
   summarise(n_uni = n_distinct(universite), .groups = "drop") %>%
   filter(n_uni >= 2) %>%
@@ -1228,7 +1228,7 @@ library(stringr)
 
 top3_df <- df_muh_temiz %>%
   filter(universite %in% top12_uni_puan$universite,
-         ucret_burs == "Ücretsiz") %>%
+         str_detect(ucret_burs, "cretsiz")) %>%
   group_by(universite, bolum) %>%
   summarise(avg_score = mean(taban_puan, na.rm = TRUE), .groups = "drop") %>%
   group_by(universite) %>%

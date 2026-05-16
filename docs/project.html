@@ -841,10 +841,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df_muh_temiz <span class="ot">&lt;-</span> df_temiz <span class="sc">%&gt;%</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">grup =</span> <span class="fu">case_when</span>(</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    ucret_burs <span class="sc">==</span> <span class="st">"Ücretsiz"</span>      <span class="sc">~</span> <span class="st">"State (Free)"</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    ucret_burs <span class="sc">==</span> <span class="st">"Burslu"</span>        <span class="sc">~</span> <span class="st">"Private (Scholarship)"</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    ucret_burs <span class="sc">==</span> <span class="st">"%50 İndirimli"</span> <span class="sc">~</span> <span class="st">"Private (50% Discount)"</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    ucret_burs <span class="sc">==</span> <span class="st">"Ücretli"</span>       <span class="sc">~</span> <span class="st">"Private (Fee-paying)"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(ucret_burs, <span class="st">"cretsiz"</span>)                                    <span class="sc">~</span> <span class="st">"State (Free)"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(ucret_burs, <span class="st">"Burslu"</span>)                                     <span class="sc">~</span> <span class="st">"Private (Scholarship)"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(ucret_burs, <span class="st">"ndirimli"</span>)                                   <span class="sc">~</span> <span class="st">"Private (50% Discount)"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(ucret_burs, <span class="st">"cretli"</span>) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">str_detect</span>(ucret_burs, <span class="st">"cretsiz"</span>) <span class="sc">~</span> <span class="st">"Private (Fee-paying)"</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  ))</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>bolum_ozet <span class="ot">&lt;-</span> df_muh_temiz <span class="sc">%&gt;%</span></span>
@@ -907,10 +907,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"^End"</span>, bolum),</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>         <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"netim"</span>, bolum)) <span class="sc">%&gt;%</span></span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">grup =</span> <span class="fu">case_when</span>(</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    ucret_burs <span class="sc">==</span> <span class="st">"Ücretsiz"</span>      <span class="sc">~</span> <span class="st">"State (Free)"</span>,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    ucret_burs <span class="sc">==</span> <span class="st">"Burslu"</span>        <span class="sc">~</span> <span class="st">"Private (Scholarship)"</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    ucret_burs <span class="sc">==</span> <span class="st">"%50 İndirimli"</span> <span class="sc">~</span> <span class="st">"Private (50% Discount)"</span>,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    ucret_burs <span class="sc">==</span> <span class="st">"Ücretli"</span>       <span class="sc">~</span> <span class="st">"Private (Fee-paying)"</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(ucret_burs, <span class="st">"cretsiz"</span>)                                    <span class="sc">~</span> <span class="st">"State (Free)"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(ucret_burs, <span class="st">"Burslu"</span>)                                     <span class="sc">~</span> <span class="st">"Private (Scholarship)"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(ucret_burs, <span class="st">"ndirimli"</span>)                                   <span class="sc">~</span> <span class="st">"Private (50% Discount)"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(ucret_burs, <span class="st">"cretli"</span>) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">str_detect</span>(ucret_burs, <span class="st">"cretsiz"</span>) <span class="sc">~</span> <span class="st">"Private (Fee-paying)"</span></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  ))</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>df_endustri_temiz <span class="sc">%&gt;%</span></span>
@@ -1103,10 +1103,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>})) <span class="sc">%&gt;%</span></span>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(taban_puan), taban_puan <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">grup =</span> <span class="fu">case_when</span>(</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    ucret_burs <span class="sc">==</span> <span class="st">"Ücretsiz"</span>      <span class="sc">~</span> <span class="st">"State (Free)"</span>,</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    ucret_burs <span class="sc">==</span> <span class="st">"Burslu"</span>        <span class="sc">~</span> <span class="st">"Private (Scholarship)"</span>,</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    ucret_burs <span class="sc">==</span> <span class="st">"%50 İndirimli"</span> <span class="sc">~</span> <span class="st">"Private (50% Discount)"</span>,</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    ucret_burs <span class="sc">==</span> <span class="st">"Ücretli"</span>       <span class="sc">~</span> <span class="st">"Private (Fee-paying)"</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(ucret_burs, <span class="st">"cretsiz"</span>)                                    <span class="sc">~</span> <span class="st">"State (Free)"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(ucret_burs, <span class="st">"Burslu"</span>)                                     <span class="sc">~</span> <span class="st">"Private (Scholarship)"</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(ucret_burs, <span class="st">"ndirimli"</span>)                                   <span class="sc">~</span> <span class="st">"Private (50% Discount)"</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(ucret_burs, <span class="st">"cretli"</span>) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">str_detect</span>(ucret_burs, <span class="st">"cretsiz"</span>) <span class="sc">~</span> <span class="st">"Private (Fee-paying)"</span></span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  ))</span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>trend_df_endustri <span class="sc">%&gt;%</span></span>
@@ -1125,7 +1125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
 <span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Annual Average Score Trend by University Type - Industrial Engineering"</span>,</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Annual Average Score Trend by University Type - All Engineering"</span>,</span>
 <span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Average Base Score"</span>, <span class="at">color =</span> <span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
@@ -1142,7 +1142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>State universities consistently show the highest average scores across all years. All three groups show an upward trend over time, indicating growing demand for engineering programs.</p>
+<p>Private scholarship programs consistently show the highest average scores, though with notable year-to-year fluctuation. State universities maintain a stable upward trend, while fee-paying and discounted private programs cluster at the lower end with similar score profiles. The 2024 dip across all categories likely reflects a system-wide shift in exam scoring or quota changes.</p>
 </div>
 </div>
 </div>
@@ -1853,7 +1853,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>top12_uni_puan <span class="ot">&lt;-</span> df_muh_temiz <span class="sc">%&gt;%</span></span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(taban_puan), taban_puan <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>         <span class="fu">grepl</span>(<span class="st">"hendisli"</span>, bolum),</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>         ucret_burs <span class="sc">!=</span> <span class="st">"Ücretli"</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>         <span class="sc">!</span><span class="fu">str_detect</span>(ucret_burs, <span class="st">"cretli"</span>) <span class="sc">|</span> <span class="fu">str_detect</span>(ucret_burs, <span class="st">"cretsiz"</span>)</span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(universite, uni_turu) <span class="sc">%&gt;%</span></span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
@@ -1922,7 +1922,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>common_depts <span class="ot">&lt;-</span> df_muh_temiz <span class="sc">%&gt;%</span></span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(universite <span class="sc">%in%</span> top12_uni_puan<span class="sc">$</span>universite,</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>         ucret_burs <span class="sc">==</span> <span class="st">"Ücretsiz"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>         <span class="fu">str_detect</span>(ucret_burs, <span class="st">"cretsiz"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bolum) <span class="sc">%&gt;%</span></span>
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_uni =</span> <span class="fu">n_distinct</span>(universite), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n_uni <span class="sc">&gt;=</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
@@ -1994,7 +1994,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>top3_df <span class="ot">&lt;-</span> df_muh_temiz <span class="sc">%&gt;%</span></span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(universite <span class="sc">%in%</span> top12_uni_puan<span class="sc">$</span>universite,</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>         ucret_burs <span class="sc">==</span> <span class="st">"Ücretsiz"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>         <span class="fu">str_detect</span>(ucret_burs, <span class="st">"cretsiz"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(universite, bolum) <span class="sc">%&gt;%</span></span>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_score =</span> <span class="fu">mean</span>(taban_puan, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(universite) <span class="sc">%&gt;%</span></span>
