@@ -671,40 +671,40 @@ The majority of programs have a fill rate between 80-100%, indicating strong dem
 
 ------------------------------------------------------------------------
 
-## 4.3 Most Filled Engineering Departments (Top 20)
+<!-- ## 4.3 Most Filled Engineering Departments (Top 20) -->
 
-> **Dataset:** YOKAtlas \| **Year:** 2025
+<!-- > **Dataset:** YOKAtlas \| **Year:** 2025 -->
 
-```{r en-cok-doldurulan, warning=FALSE, message=FALSE}
-df_muh_temiz %>%
-  filter(!is.na(doluluk)) %>%
-  group_by(bolum) %>%
-  summarise(avg_fill = mean(doluluk, na.rm = TRUE), n = n(), .groups = "drop") %>%
-  filter(n >= 3) %>%
-  arrange(desc(avg_fill)) %>%
-  head(20) %>%
-  ggplot(aes(x = reorder(bolum, avg_fill), y = avg_fill, fill = avg_fill)) +
-  geom_col() +
-  geom_hline(yintercept = 100, linetype = "dashed", color = "red", alpha = 0.7) +
-  geom_text(aes(label = paste0("%", round(avg_fill, 0))),
-            hjust = -0.1, size = 3) +
-  coord_flip() +
-  scale_fill_gradient(low = "lightyellow", high = "coral") +
-  theme_minimal() +
-  theme(legend.position = "none") +
-  labs(title = "Most Filled Engineering Departments (Top 20) - 2025",
-       subtitle = "Red dashed line = 100% fill rate",
-       x = "", y = "Avg. Fill Rate (%)") +
-  scale_y_continuous(expand = expansion(mult = c(0, 0.18)))
-```
+<!-- ```{r en-cok-doldurulan, warning=FALSE, message=FALSE} -->
+<!-- df_muh_temiz %>% -->
+<!--   filter(!is.na(doluluk)) %>% -->
+<!--   group_by(bolum) %>% -->
+<!--   summarise(avg_fill = mean(doluluk, na.rm = TRUE), n = n(), .groups = "drop") %>% -->
+<!--   filter(n >= 3) %>% -->
+<!--   arrange(desc(avg_fill)) %>% -->
+<!--   head(20) %>% -->
+<!--   ggplot(aes(x = reorder(bolum, avg_fill), y = avg_fill, fill = avg_fill)) + -->
+<!--   geom_col() + -->
+<!--   geom_hline(yintercept = 100, linetype = "dashed", color = "red", alpha = 0.7) + -->
+<!--   geom_text(aes(label = paste0("%", round(avg_fill, 0))), -->
+<!--             hjust = -0.1, size = 3) + -->
+<!--   coord_flip() + -->
+<!--   scale_fill_gradient(low = "lightyellow", high = "coral") + -->
+<!--   theme_minimal() + -->
+<!--   theme(legend.position = "none") + -->
+<!--   labs(title = "Most Filled Engineering Departments (Top 20) - 2025", -->
+<!--        subtitle = "Red dashed line = 100% fill rate", -->
+<!--        x = "", y = "Avg. Fill Rate (%)") + -->
+<!--   scale_y_continuous(expand = expansion(mult = c(0, 0.18))) -->
+<!-- ``` -->
 
-::: {.callout-note appearance="minimal"}
-Departments exceeding 100% average fill rate are the most oversubscribed programs. Increasing quota capacity in these fields could help address both access inequality and labor market demand.
-:::
+<!-- ::: {.callout-note appearance="minimal"} -->
+<!-- Departments exceeding 100% average fill rate are the most oversubscribed programs. Increasing quota capacity in these fields could help address both access inequality and labor market demand. -->
+<!-- ::: -->
 
 ------------------------------------------------------------------------
 
-## 4.4 Total Quota vs. Fill Rate by Engineering Department (Bubble Chart)
+## 4.3 Total Quota vs. Fill Rate by Engineering Department (Bubble Chart)
 
 > **Dataset:** YOKAtlas \| **Year:** 2025
 
