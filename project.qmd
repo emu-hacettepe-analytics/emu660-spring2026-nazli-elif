@@ -1,12 +1,14 @@
 ---
 title: ""
+format:
+  html:
+    code-fold: true
+    code-summary: "Show Code"
 ---
 
 ```{=html}
 <style>
-  /* hero kartının içindeki h1'e dokunma */
   .hero-top h1 { font-size: 26px !important; padding: 0 !important; background: none !important; border-radius: 0 !important; margin: 0 0 10px !important; }
-
   h1 { background: #26215C; color: #EEEDFE !important; padding: 14px 26px; border-radius: 8px; font-size: 26px !important; font-weight: 500 !important; margin-top: 40px !important; }
   h2 { border-left: 4px solid #534AB7; background: #f4f3fd; color: #26215C !important; padding: 10px 18px; border-radius: 0 6px 6px 0; font-size: 19px !important; font-weight: 600 !important; margin-top: 28px !important; }
   h3 { color: #534AB7 !important; font-size: 16px !important; font-weight: 600 !important; border-bottom: 1px solid #e5e7eb; padding-bottom: 4px; margin-top: 20px !important; }
@@ -57,11 +59,11 @@ title: ""
 
 <p style="text-align: center; margin: 40px 0; perspective: 1000px;">
 
-<img src="image.jpg" onmouseover="this.style.transform=&apos;rotateX(0deg) scale(1.05)&apos;; this.style.boxShadow=&apos;0 30px 80px rgba(0,0,0,0.3), 0 10px 30px rgba(0,0,0,0.2)&apos;;" onmouseout="this.style.transform=&apos;rotateX(4deg) scale(1.02)&apos;; this.style.boxShadow=&apos;0 20px 60px rgba(0,0,0,0.25), 0 8px 20px rgba(0,0,0,0.15)&apos;;" style="max-     border-radius: 20px;     box-shadow: 0 20px 60px rgba(0,0,0,0.25), 0 8px 20px rgba(0,0,0,0.15);     transform: rotateX(4deg) scale(1.02);     transition: transform 0.4s ease, box-shadow 0.4s ease;     display: inline-block;   " width="453"/>
+<img src="image.jpg" onmouseover="this.style.transform=&apos;rotateX(0deg) scale(1.05)&apos;; this.style.boxShadow=&apos;0 30px 80px rgba(0,0,0,0.3), 0 10px 30px rgba(0,0,0,0.2)&apos;;" onmouseout="this.style.transform=&apos;rotateX(4deg) scale(1.02)&apos;; this.style.boxShadow=&apos;0 20px 60px rgba(0,0,0,0.25), 0 8px 20px rgba(0,0,0,0.15)&apos;;" style="max-width:100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.25), 0 8px 20px rgba(0,0,0,0.15); transform: rotateX(4deg) scale(1.02); transition: transform 0.4s ease, box-shadow 0.4s ease; display: inline-block;" width="453"/>
 
 </p>
 
-# 1. 📝 Project Overview and Scope
+# 📝 Project Overview and Scope
 
 This project aims to analyze data obtained from the YÖK Atlas platform by examining universities, academics, departments, and regional distributions. Based on the analyzed data, the objectives include creating future projections, comparing universities from various perspectives, and identifying trending departments.
 
@@ -72,46 +74,36 @@ The main goal is to apply R to conduct a deep analysis that reveals trends in Tu
 Based on the available variables, the following analyses are planned:
 
 -   Comparison of the number of state and private universities by region,
-
 -   University density by city,
-
 -   Student flows from regions to universities,
-
 -   Minimum and maximum entrance scores by department,
-
 -   The universities most frequently chosen as first preference,
-
 -   Gender distribution (female–male) by department within universities,
-
 -   Comparison of the number of academics in state and private universities,
-
--   Yearly trends in placement scores and quotas
-
+-   Yearly trends in placement scores and quotas,
 -   Most and least preferred departments by choice order etc.
 
-# 2. 📊 Data
+# 📊 Data
 
 Within the scope of the project, two different datasets will be used in order to conduct more detailed analyses. One of them is obtained from <https://github.com/analyticsresearchlab/thestats>. Here, "*thestats*" package, has been developed by Mustafa Cavus and Olgun Aydin from the YÖK Atlas platform (yokatlas.yok.gov.tr), which provides comprehensive statistics on Turkish higher education. It provides a structured interface from YÖK Atlas covering the period from 2018 to 2020 that includes placement scores, student gender distribution, regional origins of students, academic staff counts, and department preference rankings.
 
 The other dataset is directly obtained from YÖK Atlas ([yokatlas.yok.gov.tr](https://yokatlas.yok.gov.tr/)), the official university placement and statistics platform maintained by Turkey's Council of Higher Education (YÖK). The dataset spans 2022 to 2025, with detailed placement data for all undergraduate programs in Turkey, including scores, rankings, quotas, and enrollment figures.
 
-<!-- four variables recorded annually for each program: the base score (score of the last admitted student), the success ranking (TBS — the national ranking of the last admitted student), the quota (number of available places), and the number of enrolled students. This longitudinal structure allows for year-on-year trend analysis and score forecasting across departments and universities. -->
-
 These datasets are appropriate for the project as they are large, structured, and contain multiple variables that enable comprehensive analysis.
 
-## 2.1 Data Source
+## 1 Data Source
 
-## 2.2 General Information About Data
+## 1.1 General Information About Data
 
 "*Thestats*" dataset includes information such as entrance scores, ranking positions, quotas, student demographics, and program-specific characteristics across different universities and departments. The dataset contains 25,652 rows and 23 columns, covering three academic years (2018, 2019, 2020) and all universities and departments across Turkey.
 
 The YÖK Atlas dataset contains 1,109 records across 12 variables, capturing program-level placement information for engineering departments in Turkish universities, including university name, department, city, university type (public/private/KKTC/abroad), scholarship status, teaching format, quota, number of enrolled students, success ranking (TBS), and base score — with historical values available for each program across 2022–2025.
 
-## 2.3 Reason of Choice
+## 1.2 Reason of Choice
 
 This topic is selected due to its relevance to higher education decision-making and its potential to provide insights for students and academic institutions.
 
-## 2.4 Preprocessing
+## 1.3 Preprocessing
 
 The first data is imported into R using the "*thestats"* package. The data was imported directly into R using the list_uni(), list_dept(), and list_score() functions from the package. No raw file download (xlsx, csv) was required, as the package provides ready-to-use query functions. Several preprocessing steps were applied before analysis.
 
@@ -125,9 +117,7 @@ The first data is imported into R using the "*thestats"* package. The data was i
 
 4.  **New Variables:** Creating new variables if necessary (e.g., grouping universities by type or region)
 
-The other dataset collected using the "yokatlas-py" Python package, integrated into R via the reticulate library. 
-
-<!-- The search_lisans_programs() function was queried for all engineering-related programs, returning a raw dataset of 1,109 records across 12 variables. -->
+The other dataset collected using the "yokatlas-py" Python package, integrated into R via the reticulate library.
 
 **Preprocessing Steps:**
 
@@ -141,38 +131,1184 @@ The other dataset collected using the "yokatlas-py" Python package, integrated i
 
 5.  **Grouping:** A categorical grouping variable is created distinguishing between public universities, funded private universities, and fee-paying private universities to enable meaningful comparisons across institutional types.
 
-    <!--#  -->
+Planned analyses include cross-department score comparisons, public versus private university differences, city-level distributions, year-on-year trend analysis, score forecasting for 2026, and university prestige rankings based on success rankings.
 
-    Planned analyses include cross-department score comparisons, public versus private university differences, city-level distributions, year-on-year trend analysis, score forecasting for 2026, and university prestige rankings based on success rankings.
+# 🧭Analysis
 
-# 3. 🧭Analysis
+## Exploratory Data Analysis
 
-## 3.1 Exploratory Data Analysis
+```{r libraries-extra, include=FALSE}
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(stringi)
+library(ggplot2)
+library(reticulate)
+library(thestats)
+library(tidyverse)
+library(broom)
 
-<!-- In the exploratory phase, I will: -->
+`%||%` <- function(a, b) if (!is.null(a)) a else b
+```
 
-<!-- -   Examine the distribution of key variables such as scores and rankings -->
+# 1. University Distribution and Regional Density
 
-<!-- -   Visualize trends over time -->
+------------------------------------------------------------------------
 
-<!-- -   Compare universities and departments using summary statistics -->
+## 1.1 Number of Universities by Region
 
-<!-- -   Identify patterns and potential relationships between variables -->
+> **Dataset:** theStats \| **Year:** All years (cumulative)
 
-<!-- Initial visualizations may include histograms, boxplots, and scatter plots. -->
+```{r bolge-universite, warning=FALSE, message=FALSE}
+uni_data <- list_uni(region_names = "all", city_names = "all")
 
-## 3.2 Trend Analysis
+region_uni <- uni_data %>%
+  group_by(region) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count))
 
-xxxxxx
+ggplot(region_uni, aes(x = reorder(region, count), y = count)) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +
+  theme_minimal() +
+  labs(title = "Number of Universities by Region",
+       x = "Region", y = "Number of Universities")
+```
 
-## 3.3 Model Fitting
+::: {.callout-note appearance="minimal"}
+The distribution of universities across regions reveals significant disparities. Marmara and Central Anatolia host the highest number of universities, indicating a concentration of higher education institutions in economically developed areas. Eastern regions have relatively fewer universities, suggesting inequalities in access to higher education.
+:::
 
-xxxxxx
+------------------------------------------------------------------------
 
-## 3.4 Results
+## 1.2 State vs. Private Universities by Region
 
-xxxxxx
+> **Dataset:** theStats \| **Year:** All years (cumulative)
+
+```{r bolge-tip, warning=FALSE, message=FALSE}
+region_type <- uni_data %>%
+  group_by(region, type) %>%
+  summarise(count = n(), .groups = "drop")
+
+region_order <- region_type %>%
+  group_by(region) %>%
+  summarise(total = sum(count)) %>%
+  arrange(desc(total))
+
+region_type$region <- factor(region_type$region, levels = region_order$region)
+
+ggplot(region_type, aes(x = region, y = count, fill = type)) +
+  geom_col(position = "dodge") +
+  coord_flip() +
+  scale_x_discrete(limits = rev(levels(region_type$region))) +
+  theme_minimal() +
+  labs(title = "University Distribution by Region (State / Private)",
+       x = "Region", y = "Number of Universities", fill = "Type")
+```
+
+::: {.callout-note appearance="minimal"}
+State universities dominate across almost all regions, while private universities are more concentrated in economically developed areas such as Marmara and Central Anatolia.
+:::
+
+------------------------------------------------------------------------
+
+## 1.3 Top 15 Cities by Number of Universities
+
+> **Dataset:** theStats \| **Year:** All years (cumulative)
+
+```{r sehir-universite, warning=FALSE, message=FALSE}
+city_uni <- uni_data %>%
+  group_by(city) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count)) %>%
+  slice(1:15)
+
+ggplot(city_uni, aes(x = reorder(city, count), y = count)) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +
+  theme_minimal() +
+  labs(title = "Top 15 Cities by Number of Universities",
+       x = "City", y = "Number of Universities")
+```
+
+::: {.callout-note appearance="minimal"}
+Istanbul, Ankara, and Izmir lead the ranking, indicating a strong centralization of higher education institutions in large metropolitan areas.
+:::
+
+------------------------------------------------------------------------
+
+# 2. Department-Level Score Analysis
+
+------------------------------------------------------------------------
+
+## 2.1 Departments with Highest and Lowest Scores
+
+> **Dataset:** theStats \| **Year:** All years (cumulative)
+
+```{r taban-puan-bolum, warning=FALSE, message=FALSE}
+score_data_x14 <- list_score(region_names = "all",
+                             university_names = "all",
+                             department_names = "all",
+                             var_ids = "X14")
+
+score_clean <- score_data_x14 %>%
+  filter(X14 != "---") %>%
+  mutate(
+    X14 = as.numeric(gsub(",", ".", X14)),
+    dept_clean = department %>%
+      str_remove_all("\\s*\\(English\\)|\\s*\\(French\\)|\\s*\\(Scholarship\\)") %>%
+      str_remove_all("\\s*\\(Paid\\)|\\s*\\(Distance Education\\)|\\s*\\(Acikogretim\\)") %>%
+      str_remove_all("\\s*\\([0-9]+%\\s*Discount\\)|\\s*\\(High School\\)") %>%
+      str_remove_all("\\s*\\(Faculty\\)|\\s*\\(50% Discount\\)|\\s*\\(25% Discount\\)") %>%
+      str_squish()
+  ) %>%
+  filter(
+    !is.na(X14),
+    nchar(dept_clean) >= 5,
+    !str_detect(dept_clean, "^(Type|T[uü]r|Program|B[oö]l[uü]m)$")
+  )
+
+dept_counts <- score_clean %>%
+  count(dept_clean) %>%
+  filter(n >= 30)
+
+score_clean %>%
+  filter(dept_clean %in% dept_counts$dept_clean) %>%
+  group_by(dept_clean) %>%
+  summarise(
+    med_score = median(X14, na.rm = TRUE),
+    n_prog    = n(),
+    .groups   = "drop"
+  ) %>%
+  arrange(desc(med_score)) %>%
+  slice(c(1:10, (n()-9):n())) %>%
+  mutate(group = ifelse(row_number() <= 10, "High", "Low")) %>%
+  ggplot(aes(x = reorder(dept_clean, med_score),
+             y = med_score, fill = group)) +
+  geom_col() +
+  geom_text(aes(label = paste0(round(med_score, 0), "  (n=", n_prog, ")")),
+            hjust = -0.05, size = 2.8) +
+  coord_flip() +
+  theme_minimal() +
+  scale_fill_manual(values = c("High" = "#2ecc71", "Low" = "#e74c3c")) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.2))) +
+  labs(title = "Departments with Highest and Lowest Placement Scores",
+       subtitle = "Median score | min. 30 programs",
+       x = "Department", y = "Median Placement Score", fill = "")
+```
+
+::: {.callout-note appearance="minimal"}
+The chart displays the top 10 highest and bottom 10 lowest-scoring departments based on median placement scores across all Turkish universities, with a minimum of 30 programs per department to ensure statistical reliability. Pilotage, Medicine, and Dentist/Dentistry dominate the high end, reflecting the highly competitive nature of health and aviation fields. Notably, Dentist and Dentistry appear separately due to minor naming inconsistencies in the dataset — they effectively represent the same field. On the lower end, departments such as Archaeology, Finance and Banking, and Philosophy show median scores around 220–236, indicating lower competition thresholds. The wide gap between high (\~430–493) and low (\~211–236) scoring departments highlights the stark selectivity differences across disciplines in Turkish higher education.
+:::
+
+------------------------------------------------------------------------
+
+## 2.2 Score Range (Min-Max) by Department (Top 15)
+
+> **Dataset:** theStats \| **Year:** All years (cumulative)
+
+```{r taban-tavan, warning=FALSE, message=FALSE}
+library(thestats)
+score_data_x1416 <- list_score(region_names = "all",
+                               university_names = "all",
+                               department_names = "all",
+                               var_ids = c("X14", "X16"))
+
+score_clean2 <- score_data_x1416 %>%
+  filter(X14 != "---", X16 != "---") %>%
+  mutate(
+    X14 = as.numeric(gsub(",", ".", X14)),
+    X16 = as.numeric(gsub(",", ".", X16)),
+    dept_clean = department %>%
+      str_remove_all("\\s*\\(English\\)|\\s*\\(French\\)|\\s*\\(Scholarship\\)") %>%
+      str_remove_all("\\s*\\(Paid\\)|\\s*\\(Distance Education\\)|\\s*\\(Acikogretim\\)") %>%
+      str_remove_all("\\s*\\([0-9]+%\\s*Discount\\)|\\s*\\(High School\\)") %>%
+      str_remove_all("\\s*\\(Faculty\\)") %>%
+      str_squish()
+  ) %>%
+  filter(
+    !is.na(X14), !is.na(X16),
+    nchar(dept_clean) >= 5,
+    !str_detect(dept_clean, "^(Type|T[uü]r|Program|B[oö]l[uü]m)$")
+  )
+
+score_summary2 <- score_clean2 %>%
+  group_by(dept_clean) %>%
+  summarise(
+    n_prog    = n(),
+    med_taban = median(X14, na.rm = TRUE),
+    p10_taban = quantile(X14, 0.10, na.rm = TRUE),
+    p90_tavan = quantile(X16, 0.90, na.rm = TRUE),
+    .groups   = "drop"
+  ) %>%
+  filter(n_prog >= 30) %>%
+  arrange(desc(med_taban)) %>%
+  slice(1:15)
+
+score_summary2 %>%
+  ggplot() +
+  geom_segment(aes(x = reorder(dept_clean, med_taban),
+                   xend = reorder(dept_clean, med_taban),
+                   y = p10_taban, yend = p90_tavan),
+               color = "gray60", linewidth = 1.2) +
+  geom_point(aes(x = reorder(dept_clean, med_taban), y = p10_taban),
+             color = "#e74c3c", size = 3) +
+  geom_point(aes(x = reorder(dept_clean, med_taban), y = med_taban),
+             color = "gray20", size = 2.5, shape = 18) +
+  geom_point(aes(x = reorder(dept_clean, med_taban), y = p90_tavan),
+             color = "#2ecc71", size = 3) +
+  coord_flip() +
+  theme_minimal() +
+  labs(title = "Placement Score Range by Department (Top 15 by Median)",
+       subtitle = "Red = 10th pct | Diamond = median | Green = 90th pct | min. 30 programs",
+       x = "Department", y = "Placement Score",
+       caption = "Language/fee suffixes removed from department names")
+```
+
+::: {.callout-note appearance="minimal"}
+This chart shows the realistic placement score spread for the top 15 departments by median score. Each line spans from the 10th percentile threshold score (red dot) to the 90th percentile ceiling score (green dot), with the diamond marking the median. Departments like Pilotage and Computer Engineering show wide ranges — meaning the same department varies dramatically in selectivity depending on the university. For example, Computer Engineering's red dot sits near 290 while its green dot exceeds 530, a spread of over 240 points. In contrast, Medicine and Dentistry show narrower ranges, suggesting more uniform selectivity across institutions. These patterns confirm that institutional prestige is the primary driver of score variation within a given field.
+:::
+
+------------------------------------------------------------------------
+
+## 2.3 Engineering Departments Score Comparison (YOKAtlas)
+
+> **Dataset:** YOKAtlas \| **Year:** 2025
+
+```{r muhendislik-puan, warning=FALSE, message=FALSE}
+load("C:/Users/ASUS/Documents/yokatlas_objects.RData")
+
+df_muh_temiz <- df_temiz %>%
+  mutate(grup = case_when(
+    ucret_burs == "Ücretsiz"      ~ "State (Free)",
+    ucret_burs == "Burslu"        ~ "Private (Scholarship)",
+    ucret_burs == "%50 İndirimli" ~ "Private (50% Discount)",
+    ucret_burs == "Ücretli"       ~ "Private (Fee-paying)"
+  ))
+
+bolum_ozet <- df_muh_temiz %>%
+  group_by(bolum) %>%
+  summarise(n = n(), med_puan = median(taban_puan, na.rm = TRUE), .groups = "drop") %>%
+  filter(n >= 5) %>%
+  arrange(med_puan)
+
+bolum_medyan <- df_muh_temiz %>%
+  filter(!is.na(taban_puan), bolum %in% bolum_ozet$bolum) %>%
+  group_by(bolum) %>%
+  summarise(med = median(taban_puan), .groups = "drop") %>%
+  arrange(med)
+
+df_muh_temiz %>%
+  filter(bolum %in% bolum_ozet$bolum, !is.na(taban_puan)) %>%
+  mutate(bolum = factor(bolum, levels = bolum_medyan$bolum)) %>%
+  ggplot(aes(x = bolum, y = taban_puan)) +
+  geom_boxplot(aes(fill = bolum), alpha = 0.7, outlier.size = 0.8, show.legend = FALSE) +
+  coord_flip() +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = 6)) +
+  labs(title = "Engineering Departments - Score Comparison (2025)",
+       subtitle = "Ordered by median | min 5 programs",
+       x = "", y = "Base Score")
+```
+
+::: {.callout-note appearance="minimal"}
+A clear hierarchy exists among engineering departments. Computer, industrial and electrical-electronics engineering rank at the top, while Wood Products Industrial Engineering and Aquaculture Engineering show wider score ranges, reflecting their presence in both prestigious and less competitive universities.
+:::
+
+------------------------------------------------------------------------
+
+## 2.4 Industrial Engineering - University Ranking (Lollipop)
+
+> **Dataset:** YOKAtlas \| **Year:** 2025
+
+```{r endustri-lollipop, warning=FALSE, message=FALSE, fig.height=5, fig.width=9}
+library(dplyr)
+library(ggplot2)
+library(stringr)
+
+df_endustri_temiz <- df_temiz %>%
+  filter(grepl("^End", bolum),
+         !grepl("netim", bolum)) %>%
+  mutate(grup = case_when(
+    ucret_burs == "Ücretsiz"      ~ "State (Free)",
+    ucret_burs == "Burslu"        ~ "Private (Scholarship)",
+    ucret_burs == "%50 İndirimli" ~ "Private (50% Discount)",
+    ucret_burs == "Ücretli"       ~ "Private (Fee-paying)"
+  ))
+
+df_endustri_temiz %>%
+  arrange(desc(taban_puan)) %>%
+  slice(1:15) %>%
+  mutate(
+    label = paste0(substr(universite, 1, 30),
+                   ifelse(str_detect(detay, "ngilizce"), " (Eng)", ""),
+                   ifelse(ucret_burs == "Burslu", " *", "")),
+    color_group = grup
+  ) %>%
+  ggplot(aes(x = reorder(label, taban_puan), y = taban_puan, color = color_group)) +
+  geom_segment(aes(xend = reorder(label, taban_puan),
+                   y = 450, yend = taban_puan),
+               linewidth = 0.6, alpha = 0.6) +
+  geom_point(size = 3) +
+  geom_text(aes(label = round(taban_puan, 0)), hjust = -0.3, size = 2.8) +
+  coord_flip() +
+  scale_color_manual(values = c(
+    "State (Free)"           = "steelblue",
+    "Private (Scholarship)"  = "coral",
+    "Private (50% Discount)" = "orange",
+    "Private (Fee-paying)"   = "gray50"
+  )) +
+  theme_minimal() +
+  theme(
+    legend.position    = "bottom",
+    axis.text.y        = element_text(size = 9),
+    panel.grid.major.y = element_line(linewidth = 0.3, color = "gray90")
+  ) +
+  labs(title = "Industrial Engineering - Top 15 Universities by Score (2025)",
+       x = "", y = "Base Score", color = "") +
+  scale_y_continuous(limits = c(450, 560),
+                     expand = expansion(mult = c(0, 0.15)))
+```
+
+::: {.callout-note appearance="minimal"}
+State universities dominate the upper half of the ranking. Scholarship-based private universities compete closely with state universities in certain programs, while fee-paying private programs cluster in lower score bands.
+:::
+
+------------------------------------------------------------------------
+
+# 3. State vs. Private University Comparison
+
+------------------------------------------------------------------------
+
+## 3.1 Academic Staff Comparison: State vs. Private
+
+> **Dataset:** theStats \| **Year:** All years (cumulative)
+
+```{r akademisyen-devletvakif, warning=FALSE, message=FALSE}
+numeric_cols <- c("X14", "X16", "X21", "X22",
+                  "X25", "X26", "X27", "X28", "X29", "X30", "X31",
+                  "X140", "X188", "X189", "X190", "X9")
+
+score_data_full <- list_score(
+  region_names = "all",
+  university_names = "all",
+  department_names = "all",
+  var_ids = numeric_cols
+)
+
+score_full_clean <- score_data_full %>%
+  mutate(across(all_of(numeric_cols),
+                ~ suppressWarnings(as.numeric(gsub(",", ".",
+                                                   ifelse(. == "---", NA, .))))))
+
+score_full_clean %>%
+  filter(!is.na(X188), !is.na(X189), !is.na(X190)) %>%
+  group_by(type) %>%
+  summarise(Professor  = sum(X188, na.rm = TRUE),
+            Assoc_Prof = sum(X189, na.rm = TRUE),
+            Asst_Prof  = sum(X190, na.rm = TRUE)) %>%
+  pivot_longer(cols = c(Professor, Assoc_Prof, Asst_Prof),
+               names_to = "title", values_to = "count") %>%
+  ggplot(aes(x = title, y = count, fill = type)) +
+  geom_col(position = "dodge") +
+  theme_minimal() +
+  scale_fill_manual(values = c("#2ecc71", "#e74c3c")) +
+  labs(title = "Academic Staff Count: State vs. Private Universities",
+       x = "Title", y = "Count", fill = "University Type")
+```
+
+::: {.callout-note appearance="minimal"}
+State universities significantly outnumber private universities in academic staff across all titles, reflecting their deeper institutional research capacity.
+:::
+
+------------------------------------------------------------------------
+
+## 3.2 State vs. Private Score Comparison - Industrial Engineering (Boxplot)
+
+> **Dataset:** YOKAtlas \| **Year:** 2025
+
+```{r devlet-vakif-boxplot, warning=FALSE, message=FALSE}
+library(dplyr)
+library(ggplot2)
+
+df_endustri_temiz %>%
+  filter(!is.na(grup)) %>%
+  ggplot(aes(x = grup, y = taban_puan, fill = grup)) +
+  geom_boxplot(alpha = 0.6, outlier.shape = NA, width = 0.4) +
+  geom_jitter(aes(color = grup), width = 0.12, alpha = 0.7, size = 2.5) +
+  scale_fill_manual(values = c(
+    "State (Free)"           = "steelblue",
+    "Private (Scholarship)"  = "coral",
+    "Private (50% Discount)" = "orange",
+    "Private (Fee-paying)"   = "gray70"
+  )) +
+  scale_color_manual(values = c(
+    "State (Free)"           = "steelblue4",
+    "Private (Scholarship)"  = "coral4",
+    "Private (50% Discount)" = "darkorange3",
+    "Private (Fee-paying)"   = "gray40"
+  )) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(title = "State / Private Scholarship / Private Fee-paying - Score Comparison",
+       x = "", y = "Base Score")
+```
+
+::: {.callout-note appearance="minimal"}
+State and scholarship-based private universities compete in similar score ranges, while fee-paying private programs have a noticeably lower median, suggesting they serve as fallback options for students who could not meet score thresholds.
+:::
+
+------------------------------------------------------------------------
+
+## 3.3 State vs. Private Annual Score Trend - All Engineering
+
+> **Dataset:** YOKAtlas \| **Year:** 2022-2025
+
+```{r devlet-vakif-trend, warning=FALSE, message=FALSE}
+trend_df_endustri <- bind_rows(lapply(raw, function(p) {
+  taban <- p$taban
+  if (is.null(taban)) return(NULL)
+  tibble(
+    universite = stri_unescape_unicode(p$uni_adi %||% NA_character_),
+    uni_turu   = stri_unescape_unicode(p$universite_turu %||% NA_character_),
+    ucret_burs = stri_unescape_unicode(p$ucret_burs %||% NA_character_),
+    yil_t      = names(taban),
+    taban_puan = suppressWarnings(as.numeric(unlist(taban)))
+  )
+})) %>%
+  filter(!is.na(taban_puan), taban_puan > 0) %>%
+  mutate(grup = case_when(
+    ucret_burs == "Ücretsiz"      ~ "State (Free)",
+    ucret_burs == "Burslu"        ~ "Private (Scholarship)",
+    ucret_burs == "%50 İndirimli" ~ "Private (50% Discount)",
+    ucret_burs == "Ücretli"       ~ "Private (Fee-paying)"
+  ))
+
+trend_df_endustri %>%
+  filter(!is.na(grup)) %>%
+  group_by(yil_t, grup) %>%
+  summarise(avg = mean(taban_puan, na.rm = TRUE), .groups = "drop") %>%
+  ggplot(aes(x = yil_t, y = avg, color = grup, group = grup)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 3.5) +
+  geom_text(aes(label = round(avg, 1)), vjust = -0.8, size = 3) +
+  scale_color_manual(values = c(
+    "State (Free)"           = "steelblue",
+    "Private (Scholarship)"  = "coral",
+    "Private (50% Discount)" = "orange",
+    "Private (Fee-paying)"   = "gray50"
+  )) +
+  theme_minimal() +
+  theme(legend.position = "bottom") +
+  labs(title = "Annual Average Score Trend by University Type - Industrial Engineering",
+       x = "Year", y = "Average Base Score", color = "")
+```
+
+::: {.callout-note appearance="minimal"}
+State universities consistently show the highest average scores across all years. All three groups show an upward trend over time, indicating growing demand for engineering programs.
+:::
+
+------------------------------------------------------------------------
+
+# 4. Quota, Enrollment and Preference Analysis
+
+------------------------------------------------------------------------
+
+## 4.1 Top 15 Universities by First-Choice Preference Count
+
+> **Dataset:** theStats \| **Year:** All years (cumulative)
+
+```{r tercih-universite, warning=FALSE, message=FALSE}
+score_data_t <- list_score(region_names = "all",
+                           university_names = "all",
+                           department_names = "all",
+                           var_ids = c("X141"))
+
+score_data_t <- score_data_t %>%
+  filter(X141 != "---") %>%
+  mutate(X141 = as.numeric(gsub(",", ".", X141))) %>%
+  filter(!is.na(X141))
+
+uni_tercih <- score_data_t %>%
+  group_by(university) %>%
+  summarise(total_pref = sum(X141, na.rm = TRUE)) %>%
+  arrange(desc(total_pref)) %>%
+  slice(1:15)
+
+uni_tercih %>%
+  ggplot(aes(x = reorder(university, total_pref),
+             y = total_pref, fill = total_pref)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  scale_fill_viridis_c(option = "C") +
+  theme_minimal() +
+  labs(title = "Top 15 Universities by First-Choice Preference Count",
+       x = "University", y = "First-Choice Count")
+```
+
+::: {.callout-note appearance="minimal"}
+Established state universities in Istanbul and Ankara dominate first-choice preferences, reflecting the importance of geographic proximity and institutional prestige in student decision-making.
+:::
+
+------------------------------------------------------------------------
+
+## 4.2 Quota Fill Rate Distribution - Industrial Engineering
+
+> **Dataset:** YOKAtlas \| **Year:** 2025
+
+```{r doluluk-dagilim, warning=FALSE, message=FALSE}
+df_endustri_temiz %>%
+  mutate(fill_rate = yerlesen / kontenjan * 100) %>%
+  filter(!is.na(fill_rate), fill_rate > 0) %>%
+  ggplot(aes(x = fill_rate)) +
+  geom_histogram(binwidth = 5, fill = "coral", color = "white") +
+  geom_vline(xintercept = 100, linetype = "dashed", color = "red") +
+  theme_minimal() +
+  labs(title = "Quota Fill Rate Distribution (%) - Industrial Engineering 2025",
+       x = "Fill Rate (%)", y = "Number of Programs")
+```
+
+::: {.callout-note appearance="minimal"}
+The majority of programs have a fill rate between 80-100%, indicating strong demand for Industrial Engineering. Programs exceeding 100% reflect cases where waitlist students were enrolled.
+:::
+
+------------------------------------------------------------------------
+
+## 4.3 Most Filled Engineering Departments (Top 20)
+
+> **Dataset:** YOKAtlas \| **Year:** 2025
+
+```{r en-cok-doldurulan, warning=FALSE, message=FALSE}
+df_muh_temiz %>%
+  filter(!is.na(doluluk)) %>%
+  group_by(bolum) %>%
+  summarise(avg_fill = mean(doluluk, na.rm = TRUE), n = n(), .groups = "drop") %>%
+  filter(n >= 3) %>%
+  arrange(desc(avg_fill)) %>%
+  head(20) %>%
+  ggplot(aes(x = reorder(bolum, avg_fill), y = avg_fill, fill = avg_fill)) +
+  geom_col() +
+  geom_hline(yintercept = 100, linetype = "dashed", color = "red", alpha = 0.7) +
+  geom_text(aes(label = paste0("%", round(avg_fill, 0))),
+            hjust = -0.1, size = 3) +
+  coord_flip() +
+  scale_fill_gradient(low = "lightyellow", high = "coral") +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(title = "Most Filled Engineering Departments (Top 20) - 2025",
+       subtitle = "Red dashed line = 100% fill rate",
+       x = "", y = "Avg. Fill Rate (%)") +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.18)))
+```
+
+::: {.callout-note appearance="minimal"}
+Departments exceeding 100% average fill rate are the most oversubscribed programs. Increasing quota capacity in these fields could help address both access inequality and labor market demand.
+:::
+
+------------------------------------------------------------------------
+
+## 4.4 Total Quota vs. Fill Rate by Engineering Department (Bubble Chart)
+
+> **Dataset:** YOKAtlas \| **Year:** 2025
+
+```{r kontenjan-doluluk, warning=FALSE, message=FALSE, fig.width=10, fig.height=7}
+bubble_data <- df_muh_temiz %>%
+  group_by(bolum) %>%
+  summarise(
+    total_quota = sum(kontenjan, na.rm = TRUE),
+    avg_fill    = mean(doluluk,  na.rm = TRUE),
+    avg_score   = mean(taban_puan, na.rm = TRUE),
+    n           = n(),
+    .groups     = "drop"
+  ) %>%
+  filter(n >= 3, !is.na(avg_fill))
+
+ggplot(bubble_data, aes(x = total_quota, y = avg_fill, size = n, fill = avg_score)) +
+  geom_point(alpha = 0.75, shape = 21, color = "white", stroke = 0.4) +
+  geom_text(aes(label = str_extract(bolum, "^\\w+"), color = avg_score),
+            vjust = -1.1, size = 3, fontface = "bold",
+            check_overlap = TRUE) +
+  geom_hline(yintercept = 100, linetype = "dashed", color = "red", alpha = 0.6) +
+  scale_fill_gradient(low = "#a8d8ea", high = "#1a4a6e",
+                      name = "Avg. Base Score") +
+  scale_color_gradient(low = "#2a7db5", high = "#0a2a4a",
+                       guide = "none") +
+  scale_size_continuous(range = c(4, 16),
+                        breaks = c(10, 20, 30, 40, 50),
+                        name = "No. of Programs") +
+  theme_minimal(base_size = 12) +
+  theme(
+    legend.position  = "bottom",
+    legend.box       = "horizontal",
+    legend.key.width = unit(1.5, "cm"),
+    legend.text      = element_text(size = 9),
+    plot.title       = element_text(face = "bold", size = 13),
+    plot.subtitle    = element_text(size = 10, color = "gray40")
+  ) +
+  guides(
+    fill = guide_colorbar(title.position = "top", barwidth = 8, barheight = 0.8),
+    size = guide_legend(title.position = "top", override.aes = list(fill = "steelblue"))
+  ) +
+  labs(title    = "Total Quota vs. Average Fill Rate by Engineering Department",
+       subtitle = "Bubble size = no. of programs | Color = avg base score | Red dashed = 100% fill",
+       x = "Total Quota", y = "Avg. Fill Rate (%)")
+```
+
+::: {.callout-note appearance="minimal"}
+Departments with large quotas and high fill rates signal strong and sustained demand. Higher-scoring departments tend to maintain higher fill rates regardless of quota size.
+:::
+
+------------------------------------------------------------------------
+
+# 5. Academic Staff and Student Profile
+
+------------------------------------------------------------------------
+
+## 5.1 Top 15 Universities by Total Academic Staff
+
+> **Dataset:** theStats \| **Year:** All years (cumulative)
+
+```{r akademisyen-universite, warning=FALSE, message=FALSE}
+score_full_clean %>%
+  filter(!is.na(X188), !is.na(X189), !is.na(X190)) %>%
+  group_by(university) %>%
+  summarise(total_staff = sum(X188 + X189 + X190, na.rm = TRUE)) %>%
+  arrange(desc(total_staff)) %>%
+  slice(1:15) %>%
+  ggplot(aes(x = reorder(university, total_staff),
+             y = total_staff, fill = total_staff)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  scale_fill_viridis_c(option = "D") +
+  theme_minimal() +
+  labs(title = "Top 15 Universities by Total Academic Staff",
+       x = "University", y = "Total Academic Staff")
+```
+
+::: {.callout-note appearance="minimal"}
+Universities with the largest academic staff are also the largest state universities in terms of student enrollment and number of departments, signaling strong institutional capacity.
+:::
+
+------------------------------------------------------------------------
+
+## 5.2 Gender Distribution by Department (Top 15)
+
+> **Dataset:** theStats \| **Year:** All years (cumulative)
+
+```{r cinsiyet-bolum, warning=FALSE, message=FALSE}
+score_full_clean %>%
+  filter(!is.na(X21), !is.na(X22)) %>%
+  group_by(department) %>%
+  summarise(female = sum(X21, na.rm = TRUE),
+            male   = sum(X22, na.rm = TRUE),
+            total  = female + male) %>%
+  arrange(desc(total)) %>%
+  slice(1:15) %>%
+  pivot_longer(cols = c(female, male),
+               names_to = "gender", values_to = "count") %>%
+  ggplot(aes(x = reorder(department, total),
+             y = count, fill = gender)) +
+  geom_col(position = "fill") +
+  coord_flip() +
+  scale_fill_manual(values = c("female" = "#e84393", "male" = "#3498db")) +
+  scale_y_continuous(labels = scales::percent) +
+  theme_minimal() +
+  labs(title = "Gender Distribution by Department (Top 15)",
+       x = "Department", y = "Proportion", fill = "Gender")
+```
+
+::: {.callout-note appearance="minimal"}
+Significant gender imbalances are visible across departments. Engineering fields remain male-dominated, while education, nursing, and social work programs show considerably higher female enrollment rates.
+:::
+
+------------------------------------------------------------------------
+
+# 6. Regional Student Flow
+
+------------------------------------------------------------------------
+
+## 6.1 Top Universities by Student Inflow from Each Region
+
+> **Dataset:** theStats \| **Year:** All years (cumulative)
+
+```{r ogrenci-akisi, warning=FALSE, message=FALSE, fig.width=14, fig.height=10}
+score_full_clean %>%
+  group_by(university) %>%
+  summarise(Mediterranean   = sum(X25, na.rm = TRUE),
+            East_Anatolia   = sum(X26, na.rm = TRUE),
+            Aegean          = sum(X27, na.rm = TRUE),
+            Southeast       = sum(X28, na.rm = TRUE),
+            Central_Anatolia = sum(X29, na.rm = TRUE),
+            Black_Sea       = sum(X30, na.rm = TRUE),
+            Marmara         = sum(X31, na.rm = TRUE)) %>%
+  pivot_longer(cols = -university,
+               names_to = "region", values_to = "count") %>%
+  group_by(region) %>%
+  slice_max(count, n = 5) %>%
+  mutate(university = str_wrap(university, width = 25)) %>%
+  ggplot(aes(x = reorder(university, count),
+             y = count, fill = region)) +
+  geom_col(show.legend = FALSE) +
+  geom_text(aes(label = scales::comma(count)),
+            hjust = -0.1, size = 3) +
+  coord_flip() +
+  facet_wrap(~region, scales = "free", ncol = 3) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.25)),
+                     labels = scales::comma) +
+  theme_minimal(base_size = 11) +
+  theme(
+    axis.text.y  = element_text(size = 8),
+    axis.text.x  = element_text(size = 8),
+    strip.text   = element_text(face = "bold", size = 10),
+    panel.spacing = unit(1.2, "cm")
+  ) +
+  labs(title = "Top Universities by Student Inflow from Each Region",
+       x = "", y = "Number of Students")
+```
+
+::: {.callout-note appearance="minimal"}
+Students largely prefer universities in nearby cities. Istanbul and Ankara attract students from all regions, standing out as nationally dominant higher education hubs.
+:::
+
+------------------------------------------------------------------------
+
+# 7. City-Level Analysis
+
+------------------------------------------------------------------------
+
+## 7.1 Average Base Score by City - Industrial Engineering
+
+> **Dataset:** YOKAtlas \| **Year:** 2025
+
+```{r sehir-endustri, warning=FALSE, message=FALSE}
+df_endustri_temiz %>%
+  group_by(sehir) %>%
+  filter(n() >= 2) %>%
+  summarise(avg = mean(taban_puan), n = n(), .groups = "drop") %>%
+  arrange(desc(avg)) %>%
+  ggplot(aes(x = reorder(sehir, avg), y = avg)) +
+  geom_col(fill = "steelblue") +
+  geom_text(aes(label = paste0(round(avg, 1), " (n=", n, ")")),
+            hjust = -0.1, size = 3) +
+  coord_flip() +
+  theme_minimal() +
+  labs(title = "Average Base Score by City - Industrial Engineering 2025",
+       x = "", y = "Score") +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.2)))
+```
+
+::: {.callout-note appearance="minimal"}
+Ankara and Istanbul lead in average scores due to the presence of prestigious universities. In cities with fewer universities, averages are largely driven by the performance of a single institution.
+:::
+
+------------------------------------------------------------------------
+
+## 7.2 Average Base Score by City - All Engineering (min 10 programs)
+
+> **Dataset:** YOKAtlas \| **Year:** 2025
+
+```{r sehir-muhendislik, warning=FALSE, message=FALSE}
+df_muh_temiz %>%
+  group_by(sehir) %>%
+  summarise(n = n(), avg_score = mean(taban_puan, na.rm = TRUE),
+            total_quota = sum(kontenjan, na.rm = TRUE), .groups = "drop") %>%
+  filter(n >= 10) %>%
+  ggplot(aes(x = reorder(sehir, avg_score), y = avg_score, fill = avg_score)) +
+  geom_col() +
+  geom_text(aes(label = paste0(round(avg_score, 0), " (n=", n, ")")),
+            hjust = -0.1, size = 2.8) +
+  coord_flip() +
+  scale_fill_gradient(low = "lightblue", high = "steelblue4") +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(title = "Average Base Score by City - All Engineering (min 10 programs) 2025",
+       x = "", y = "Average Base Score") +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.18)))
+```
+
+::: {.callout-note appearance="minimal"}
+Cities hosting multiple established technical universities consistently show the highest average engineering scores, confirming the role of academic environment and institutional prestige in shaping score levels.
+:::
+
+------------------------------------------------------------------------
+
+# 8. Demand Forecasting via Success Ranking (TBS)
+
+Using TBS (success ranking) instead of base scores gives a more reliable picture of demand trends. A falling TBS means more competitive students are choosing that department — i.e. demand is rising. Unlike base scores, TBS has no ceiling, making it better suited for trend analysis.
+
+------------------------------------------------------------------------
+
+## 8.1 Annual TBS Change by Engineering Department (Trend Analysis)
+
+> **Dataset:** YOKAtlas \| **Year:** 2022-2025 \| **State universities only**
+
+```{r tbs-slope, warning=FALSE, message=FALSE, fig.width=12, fig.height=14}
+tbs_trend <- bind_rows(lapply(raw, function(p) {
+  tbs <- p$tbs
+  if (is.null(tbs)) return(NULL)
+  tibble(
+    bolum      = stri_unescape_unicode(p$program_adi      %||% NA_character_),
+    uni_turu   = stri_unescape_unicode(p$universite_turu   %||% NA_character_),
+    ucret_burs = stri_unescape_unicode(p$ucret_burs       %||% NA_character_),
+    yil        = suppressWarnings(as.integer(names(tbs))),
+    tbs        = suppressWarnings(as.numeric(unlist(tbs)))
+  )
+})) %>%
+  filter(!is.na(tbs), tbs > 0, !is.na(yil)) %>%
+  mutate(bolum = stri_unescape_unicode(bolum))
+
+tbs_medyan <- tbs_trend %>%
+  filter(uni_turu == "Devlet") %>%
+  group_by(bolum, yil) %>%
+  summarise(med_tbs = median(tbs, na.rm = TRUE), .groups = "drop")
+
+tbs_tahmin <- tbs_medyan %>%
+  group_by(bolum) %>%
+  filter(n() >= 3) %>%
+  do({
+    model <- lm(med_tbs ~ yil, data = .)
+    tibble(
+      slope       = coef(model)[["yil"]],
+      tahmin_2026 = predict(model, newdata = data.frame(yil = 2026)),
+      r_squared   = glance(model)$r.squared,
+      gercek_2025 = mean(.$med_tbs[.$yil == 2025], na.rm = TRUE)
+    )
+  }) %>%
+  ungroup() %>%
+  filter(!is.na(slope), !is.na(tahmin_2026)) %>%
+  mutate(
+    yon         = ifelse(slope < 0, "Demand Rising", "Demand Falling"),
+    tahmin_2026 = round(tahmin_2026, 0)
+  ) %>%
+  arrange(tahmin_2026)
+
+tbs_tahmin %>%
+  arrange(slope) %>%
+  mutate(
+    bolum     = str_wrap(bolum, 35),
+    bolum     = factor(bolum, levels = bolum),
+    direction = ifelse(slope < 0, "Demand Rising", "Demand Falling")
+  ) %>%
+  ggplot(aes(x = bolum, y = slope, fill = direction)) +
+  geom_col(width = 0.7) +
+  coord_flip() +
+  scale_fill_manual(values = c("Demand Rising"  = "steelblue",
+                               "Demand Falling" = "coral")) +
+  theme_minimal(base_size = 11) +
+  theme(
+    axis.text.y        = element_text(size = 8.5, lineheight = 0.85),
+    panel.grid.major.y = element_blank(),
+    legend.position    = "bottom"
+  ) +
+  labs(
+    title    = "Annual TBS Change by Engineering Department (2022-2025)",
+    subtitle = "Negative = TBS decreasing = demand increasing | State universities only",
+    x = "", y = "Annual TBS Change", fill = ""
+  )
+```
+
+::: {.callout-note appearance="minimal"}
+Departments with a strongly negative slope are becoming more competitive each year — the students choosing them have increasingly higher national rankings. Departments with a positive slope are seeing reduced competition, which may reflect oversupply or declining labor market interest.
+:::
+
+------------------------------------------------------------------------
+
+## 8.2 2026 Forecasted Success Ranking (TBS) by Department
+
+> **Dataset:** YOKAtlas \| **Year:** 2022-2025 (Forecast: 2026) \| **State universities only**
+
+```{r tbs-rank, warning=FALSE, message=FALSE, fig.width=12, fig.height=14}
+tbs_tahmin %>%
+  arrange(desc(tahmin_2026)) %>%       # desc ile büyükten küçüğe
+  mutate(
+    bolum = str_wrap(bolum, 35),
+    bolum = factor(bolum, levels = bolum),
+    label = format(round(tahmin_2026, 0), big.mark = ",")
+  ) %>%
+  ggplot(aes(x = bolum, y = tahmin_2026, fill = tahmin_2026)) +
+  geom_col(width = 0.7) +
+  geom_text(aes(label = label), hjust = -0.1, size = 3) +
+  coord_flip() +
+  scale_fill_gradient(low = "lightblue", high = "steelblue4", guide = "none") +
+  scale_y_continuous(labels = scales::comma,
+                     expand = expansion(mult = c(0, 0.2))) +
+  theme_minimal(base_size = 11) +
+  theme(
+    axis.text.y        = element_text(size = 8.5, lineheight = 0.85),
+    panel.grid.major.y = element_blank()
+  ) +
+  labs(
+    title    = "2026 Forecasted Success Ranking (TBS) by Engineering Department",
+    subtitle = "State universities only | Lower TBS = more competitive | Top = hardest to enter",
+    x = "", y = "Forecasted TBS (2026)"
+  )
+```
+
+::: {.callout-note appearance="minimal"}
+Departments with the lowest forecasted TBS values in 2026 are projected to be the most competitive. Computer, Control & Automation, and Mathematics Engineering top the list, indicating sustained and growing student demand for these fields.
+:::
+
+------------------------------------------------------------------------
+
+## 8.3 Top 10 Most Demanded Departments - TBS Trend + 2026 Forecast
+
+> **Dataset:** YOKAtlas \| **Year:** 2022-2025 (Forecast: 2026) \| **State universities only**
+
+```{r tbs-trend-top10, warning=FALSE, message=FALSE, fig.width=11, fig.height=7}
+top10_demand <- tbs_tahmin %>%
+  arrange(tahmin_2026) %>%
+  head(10) %>%
+  pull(bolum)
+
+actual_tbs <- tbs_medyan %>%
+  filter(bolum %in% top10_demand) %>%
+  mutate(type = "Actual")
+
+forecast_tbs <- tbs_tahmin %>%
+  filter(bolum %in% top10_demand) %>%
+  select(bolum, tahmin_2026) %>%
+  mutate(yil = 2026L, med_tbs = tahmin_2026, type = "Forecast")
+
+tbs_combined <- bind_rows(
+  actual_tbs,
+  forecast_tbs %>% select(bolum, yil, med_tbs, type)
+)
+
+ggplot(tbs_combined, aes(x = yil, y = med_tbs, color = bolum, group = bolum)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(aes(shape = type), size = 3) +
+  geom_vline(xintercept = 2025.5, linetype = "dashed",
+             color = "gray50", alpha = 0.5) +
+  annotate("text", x = 2025.6,
+           y = max(tbs_combined$med_tbs, na.rm = TRUE),
+           label = "Forecast ->", hjust = 0, size = 3.5, color = "gray40") +
+  scale_shape_manual(values = c("Actual" = 16, "Forecast" = 17)) +
+  scale_y_reverse(labels = scales::comma) +
+  scale_x_continuous(breaks = c(2022, 2023, 2024, 2025, 2026)) +
+  scale_color_brewer(palette = "Paired") +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "bottom",
+        legend.text = element_text(size = 7)) +
+  guides(color = guide_legend(nrow = 4),
+         shape = guide_legend(nrow = 4)) +
+  labs(
+    title    = "Top 10 Most Demanded Departments - TBS Trend + 2026 Forecast",
+    subtitle = "State universities only | Y-axis reversed: lower = more competitive",
+    x = "Year", y = "Median TBS", color = "", shape = ""
+  )
+```
+
+::: {.callout-note appearance="minimal"}
+The top 10 departments by projected 2026 TBS show diverging trajectories. While some departments like Computer Engineering maintain relatively stable competitiveness, others such as Control & Automation and Mathematics Engineering show rapid improvement, suggesting growing career prospects in these areas.
+:::
+
+------------------------------------------------------------------------
+
+# 9. Prestigious University Comparison
+
+------------------------------------------------------------------------
+
+## 9.1 Top Universities by Engineering Score (Data-Driven)
+
+> **Dataset:** YOKAtlas \| **Year:** 2025
+
+```{r prestij-tbs, warning=FALSE, message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(stringi)
+
+top12_uni_puan <- df_muh_temiz %>%
+  filter(!is.na(taban_puan), taban_puan > 0,
+         grepl("hendisli", bolum),
+         ucret_burs != "Ücretli"
+  ) %>%
+  group_by(universite, uni_turu) %>%
+  summarise(
+    n_dept    = n_distinct(bolum),
+    n_prog    = n(),
+    avg_score = mean(taban_puan, na.rm = TRUE),
+    med_score = median(taban_puan, na.rm = TRUE),
+    .groups   = "drop"
+  ) %>%
+  filter(n_dept >= 3, n_prog >= 5) %>%
+  arrange(desc(med_score)) %>%
+  head(12)
+
+top12_uni_puan %>%
+  mutate(
+    uni_label = str_replace(universite, " ÜNİVERSİTESİ", "") %>%
+                str_replace(" UNIVERSITY", "") %>%
+                str_wrap(25),
+    uni_label = factor(uni_label, levels = rev(uni_label))
+  ) %>%
+  ggplot(aes(y = uni_label)) +
+  geom_col(aes(x = med_score, fill = uni_turu), alpha = 0.8) +
+  geom_text(aes(x = med_score,
+                label = paste0(round(med_score, 1),
+                               "  (", n_dept, " depts, n=", n_prog, ")")),
+            hjust = -0.05, size = 3) +
+  scale_fill_manual(values = c("Devlet" = "steelblue", "Vakıf" = "coral")) +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.35))) +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = 8), legend.position = "bottom") +
+  labs(title = "Top 12 Universities by Median Engineering Score (2025)",
+       subtitle = "Data-driven | min. 3 depts & 5 programs | fee-paying excluded",
+       x = "Median Base Score", y = "", fill = "Type")
+```
+
+::: {.callout-note appearance="minimal"}
+This ranking is derived entirely from the data — no manual university selection. Universities are ranked by their median engineering placement score, with fee-paying programs excluded to avoid inflation from small high-scoring cohorts. The minimum of 3 departments and 5 programs ensures only institutions with a genuine engineering faculty are included.
+:::
+
+------------------------------------------------------------------------
+
+## 9.2 Top 12 Universities x Department Base Score Heatmap
+
+> **Dataset:** YOKAtlas \| **Year:** 2025
+
+```{r heatmap, warning=FALSE, message=FALSE, fig.height=7, fig.width=13}
+library(dplyr)
+library(ggplot2)
+library(stringr)
+
+common_depts <- df_muh_temiz %>%
+  filter(universite %in% top12_uni_puan$universite,
+         ucret_burs == "Ücretsiz") %>%
+  group_by(bolum) %>%
+  summarise(n_uni = n_distinct(universite), .groups = "drop") %>%
+  filter(n_uni >= 2) %>%
+  pull(bolum)
+
+heatmap_df <- df_muh_temiz %>%
+  filter(universite %in% top12_uni_puan$universite,
+         bolum %in% common_depts,
+         ucret_burs == "Ücretsiz") %>%
+  group_by(universite, bolum) %>%
+  summarise(avg_score = mean(taban_puan, na.rm = TRUE), .groups = "drop") %>%
+  mutate(
+    bolum_short = bolum %>%
+      str_remove("Mühendisliği") %>%
+      str_remove("Mühendisligi") %>%
+      str_squish(),
+    uni_short = str_replace(universite, " ÜNİVERSİTESİ", "") %>%
+                str_replace(" UNIVERSITY", "")
+  )
+
+ggplot(heatmap_df, aes(x = bolum_short, y = uni_short, fill = avg_score)) +
+  geom_tile(color = "white", linewidth = 0.6) +
+  geom_text(aes(label = round(avg_score, 0)), size = 2.8, color = "white",
+            fontface = "bold") +
+  scale_fill_gradient(low = "#aed6f1", high = "#1a5276", na.value = "gray93") +
+  theme_minimal() +
+  theme(
+    axis.text.x     = element_text(angle = 45, hjust = 1, size = 7),
+    axis.text.y     = element_text(size = 8),
+    legend.position = "bottom",
+    panel.grid      = element_blank()
+  ) +
+  labs(title = "Top 12 Universities × Department — Base Score Heatmap (2025)",
+       subtitle = "Ücretsiz programs only | departments in ≥2 universities shown",
+       x = "", y = "", fill = "Avg. Base Score")
+```
+
+------------------------------------------------------------------------
+
+::: {.callout-note appearance="minimal"}
+The heatmap reveals which departments are offered across top universities and how scores vary within the same department across institutions. Darker cells indicate higher selectivity. Empty cells highlight departmental specialization — not all top universities offer every engineering field. Only departments shared by at least two universities are shown to keep the chart readable.
+:::
+
+------------------------------------------------------------------------
+
+## 9.3 Top 3 Departments per University (Top 12 Universities)
+
+> **Dataset:** YOKAtlas \| **Year:** 2025
+
+```{r en-yuksek-bolum, warning=FALSE, message=FALSE, fig.height=10, fig.width=11}
+library(dplyr)
+library(ggplot2)
+library(stringr)
+
+top3_df <- df_muh_temiz %>%
+  filter(universite %in% top12_uni_puan$universite,
+         ucret_burs == "Ücretsiz") %>%
+  group_by(universite, bolum) %>%
+  summarise(avg_score = mean(taban_puan, na.rm = TRUE), .groups = "drop") %>%
+  group_by(universite) %>%
+  slice_max(avg_score, n = 3) %>%
+  ungroup() %>%
+  mutate(
+    uni_short = str_replace(universite, " ÜNİVERSİTESİ", "") %>%
+                str_replace(" UNIVERSITY", ""),
+    bolum_short = bolum %>%
+      str_remove("Mühendisliği") %>%
+      str_remove("Mühendisligi") %>%
+      str_squish(),
+    uni_short = factor(uni_short,
+                       levels = top12_uni_puan %>%
+                         mutate(l = str_replace(universite, " ÜNİVERSİTESİ", "") %>%
+                                    str_replace(" UNIVERSITY", "")) %>%
+                         arrange(desc(med_score)) %>%
+                         pull(l))
+  )
+
+ggplot(top3_df, aes(x = reorder(bolum_short, avg_score),
+                    y = avg_score, fill = uni_short)) +
+  geom_col(show.legend = FALSE) +
+  geom_text(aes(label = round(avg_score, 0)),
+            hjust = -0.15, size = 3) +
+  coord_flip() +
+  facet_wrap(~uni_short, scales = "free_y", ncol = 2) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.25))) +
+  theme_minimal() +
+  theme(
+    axis.text.x     = element_text(size = 8),
+    axis.text.y     = element_text(size = 8),
+    strip.text      = element_text(size = 8, face = "bold"),
+    legend.position = "none",
+    panel.spacing   = unit(1, "lines")
+  ) +
+  labs(title = "Top 3 Highest-Scoring Departments per University (Top 12)",
+       subtitle = "Ücretsiz programs only | universities ordered by median score",
+       x = "", y = "Avg. Base Score")
+```
+
+::: {.callout-note appearance="minimal"}
+Each top university shows a distinct departmental profile. Computer Engineering and Electrical-Electronics Engineering consistently appear as the highest-scoring programs across multiple institutions. Excluding fee-paying programs ensures the ranking reflects genuine academic selectivity rather than niche high-score cohorts.
+:::
+
+------------------------------------------------------------------------
 
 # 4. 💹 Results and Key Takeaways
 
-xxxxxx
+### Regional Distribution & Institutional Landscape
+
+Turkey's higher education system exhibits a pronounced geographic concentration. The Marmara and Central Anatolia regions host the largest number of universities, while eastern regions remain significantly underrepresented. At the city level, Istanbul, Ankara, and Izmir together account for a disproportionate share of all universities nationwide. State universities dominate across every region, with private institutions clustering almost exclusively in economically developed urban centers. This pattern suggests that access to higher education in Turkey remains heavily shaped by geography and socioeconomic development.
+
+### Placement Score Patterns
+
+Across all departments in the theStats dataset, placement scores vary dramatically — from a median of around 211 at the low end to nearly 493 at the high end. Medicine, Pilotage, and Dentistry consistently occupy the highest score bands, reflecting extreme selectivity and limited program capacity. The score range analysis (10th–90th percentile) reveals that the same department can require vastly different scores depending on the university: Computer Engineering, for instance, spans over 240 points between its least and most selective programs. This confirms that institutional prestige, rather than field of study alone, is the primary driver of placement score variation.
+
+### Engineering-Specific Findings (YOKAtlas, 2025)
+
+Within the engineering domain, a clear hierarchy exists. Computer Engineering, Electrical-Electronics Engineering, and Industrial Engineering rank at the top by median placement score, while fields such as Aquaculture Engineering and Forestry-related programs sit at the bottom. When broken down by university type, state universities (Ücretsiz) consistently outperform private scholarship programs, which in turn outperform fee-paying private programs — though the gap between state and scholarship tracks is narrower than commonly assumed.
+
+At the program level, METU, ITU, and Bogazici University lead the data-driven prestige ranking, followed closely by Bilkent and Koç among private institutions. The department-level heatmap confirms that top universities maintain uniformly high scores across all their engineering fields, rather than excelling in only one or two areas.
+
+### Quota, Enrollment & Student Demand
+
+Industrial Engineering programs show strong fill rates, with the majority achieving 80–100% capacity utilization. Departments exceeding 100% fill rate signal unmet demand and suggest that quota expansions in these fields could improve both access and labor market supply. Across all engineering departments, higher-scoring programs tend to maintain higher fill rates regardless of quota size, reinforcing the link between selectivity and perceived program value.
+
+From the theStats data, universities in Istanbul and Ankara dominate first-choice preferences, reflecting the combined influence of institutional reputation, geographic proximity, and expected employment outcomes. Departments listed early in preference rankings align closely with high-scoring, high-demand fields, while late-preference departments tend to function as safety options.
+
+### Gender & Academic Staff
+
+Significant gender imbalances persist across Turkish higher education. Engineering fields remain strongly male-dominated, while education, nursing, and social work programs show considerably higher female enrollment. State universities hold a substantial advantage in total academic staff at all ranks — particularly at professor and associate professor levels — reflecting their deeper research infrastructure and longer institutional histories.
+
+### Score Trends & 2026 Forecasts
+
+Multi-year trend analysis using YOKAtlas data (2022–2025) shows a consistent upward trajectory in placement scores across almost all engineering departments and university types. Linear regression models project this trend to continue into 2026 for most fields, with Computer Engineering and Electrical-Electronics Engineering expected to see the steepest increases. A small number of departments — particularly lower-demand fields — show flat or declining slopes, potentially reflecting structural shifts in labor market expectations or expanding quota capacity.
+
+### Overall Assessment
+
+The analyses collectively paint a picture of a higher education system under increasing competitive pressure, with selectivity rising year-on-year across most engineering programs. Geographic and institutional inequalities remain structural features of the system. Students' choices are strongly influenced by prestige signals embedded in placement scores, and these signals closely track both university type and departmental reputation. For prospective students, the data suggests that program type and university prestige interact in ways that are not always visible from scores alone — particularly when comparing scholarship private programs with state university alternatives.
