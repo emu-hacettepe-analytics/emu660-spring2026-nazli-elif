@@ -788,7 +788,7 @@ Universities with the largest academic staff are also the largest state universi
 
 ------------------------------------------------------------------------
 
-## 5.2 Gender Distribution by Department (Top 15)
+## 5.2 Gender Distribution by Department (Top 15 by Total Enrollment)
 
 > **Dataset:** theStats \| **Year:** All years (cumulative)
 
@@ -810,12 +810,12 @@ score_full_clean %>%
   scale_fill_manual(values = c("female" = "#e84393", "male" = "#3498db")) +
   scale_y_continuous(labels = scales::percent) +
   theme_minimal() +
-  labs(title = "Gender Distribution by Department (Top 15)",
+  labs(title = "Gender Distribution by Department (Top 15 by Total Enrollment)",
        x = "Department", y = "Proportion", fill = "Gender")
 ```
 
 ::: {.callout-note appearance="minimal"}
-Significant gender imbalances are visible across departments. Engineering fields remain male-dominated, while education, nursing, and social work programs show considerably higher female enrollment rates.
+Significant gender imbalances are visible across departments. Engineering fields remain male-dominated, while education, nursing, and social work programs show considerably higher female enrollment rates.Top 15 departments are selected by total enrolled student count.
 :::
 
 ------------------------------------------------------------------------
@@ -895,7 +895,7 @@ df_endustri_temiz %>%
 ```
 
 ::: {.callout-note appearance="minimal"}
-Ankara and Istanbul lead in average scores due to the presence of prestigious universities. In cities with fewer universities, averages are largely driven by the performance of a single institution.
+This chart shows the average Industrial Engineering placement score by city, serving as a proxy for the overall quality of engineering programs in that location. Cities like Ankara and Istanbul rank highest due to the presence of METU, ITU, and Bogazici — all top-tier institutions. In smaller cities with only one or two programs, the city average is essentially the score of that single institution, making cross-city comparisons more meaningful for larger university hubs.
 :::
 
 ------------------------------------------------------------------------
@@ -939,7 +939,7 @@ Using TBS (success ranking) instead of base scores gives a more reliable picture
 
 > **Dataset:** YOKAtlas \| **Year:** 2022-2025 \| **State universities only**
 
-```{r tbs-slope, warning=FALSE, message=FALSE, fig.width=12, fig.height=14}
+`````{r tbs-slope, warning=FALSE, message=FALSE, fig.width=12, fig.height=14}
 tbs_trend <- bind_rows(lapply(raw, function(p) {
   tbs <- p$tbs
   if (is.null(tbs)) return(NULL)
@@ -957,7 +957,12 @@ tbs_trend <- bind_rows(lapply(raw, function(p) {
 tbs_medyan <- tbs_trend %>%
   filter(uni_turu == "Devlet") %>%
   group_by(bolum, yil) %>%
-  summarise(med_tbs = median(tbs, na.rm = TRUE), .groups = "drop")
+  summarise(
+    med_tbs = median(tbs, na.rm = TRUE),
+    n_uni   = n(),
+    .groups = "drop"
+  ) %>%
+  filter(n_uni >= 3)
 
 tbs_tahmin <- tbs_medyan %>%
   group_by(bolum) %>%
@@ -999,10 +1004,10 @@ tbs_tahmin %>%
   ) +
   labs(
     title    = "Annual TBS Change by Engineering Department (2022-2025)",
-    subtitle = "Negative = TBS decreasing = demand increasing | State universities only",
+    subtitle = "Negative = TBS decreasing = demand increasing | State universities only | min. 3 universities",
     x = "", y = "Annual TBS Change", fill = ""
   )
-```
+`````
 
 ::: {.callout-note appearance="minimal"}
 Departments with a strongly negative slope are becoming more competitive each year — the students choosing them have increasingly higher national rankings. Departments with a positive slope are seeing reduced competition, which may reflect oversupply or declining labor market interest.
@@ -1014,9 +1019,9 @@ Departments with a strongly negative slope are becoming more competitive each ye
 
 > **Dataset:** YOKAtlas \| **Year:** 2022-2025 (Forecast: 2026) \| **State universities only**
 
-```{r tbs-rank, warning=FALSE, message=FALSE, fig.width=12, fig.height=14}
+````{r tbs-rank, warning=FALSE, message=FALSE, fig.width=12, fig.height=14}
 tbs_tahmin %>%
-  arrange(desc(tahmin_2026)) %>%       # desc ile büyükten küçüğe
+  arrange(desc(tahmin_2026)) %>%
   mutate(
     bolum = str_wrap(bolum, 35),
     bolum = factor(bolum, levels = bolum),
@@ -1036,13 +1041,13 @@ tbs_tahmin %>%
   ) +
   labs(
     title    = "2026 Forecasted Success Ranking (TBS) by Engineering Department",
-    subtitle = "State universities only | Lower TBS = more competitive | Top = hardest to enter",
+    subtitle = "State universities only | Lower TBS = more competitive | min. 3 universities | Top = hardest to enter",
     x = "", y = "Forecasted TBS (2026)"
   )
-```
+````
 
 ::: {.callout-note appearance="minimal"}
-Departments with the lowest forecasted TBS values in 2026 are projected to be the most competitive. Computer, Control & Automation, and Mathematics Engineering top the list, indicating sustained and growing student demand for these fields.
+Departments with the lowest forecasted TBS values in 2026 are projected to be the most competitive. Computer Engineering, Endüstri Mühendisliği, and Elektrik-Elektronik Mühendisliği top the list — all fields with broad university coverage and consistently high student demand. The minimum of 3 universities per department ensures the ranking reflects genuinely widespread programs rather than niche fields offered at only one or two elite institutions.
 :::
 
 ------------------------------------------------------------------------
@@ -1067,7 +1072,7 @@ forecast_tbs <- tbs_tahmin %>%
   mutate(yil = 2026L, med_tbs = tahmin_2026, type = "Forecast")
 
 tbs_combined <- bind_rows(
-  actual_tbs,
+  actual_tbs %>% select(bolum, yil, med_tbs, type),
   forecast_tbs %>% select(bolum, yil, med_tbs, type)
 )
 
@@ -1090,13 +1095,14 @@ ggplot(tbs_combined, aes(x = yil, y = med_tbs, color = bolum, group = bolum)) +
          shape = guide_legend(nrow = 4)) +
   labs(
     title    = "Top 10 Most Demanded Departments - TBS Trend + 2026 Forecast",
-    subtitle = "State universities only | Y-axis reversed: lower = more competitive",
+    subtitle = "State universities only | Y-axis reversed: lower = more competitive | min. 3 universities",
     x = "Year", y = "Median TBS", color = "", shape = ""
   )
 ```
 
+
 ::: {.callout-note appearance="minimal"}
-The top 10 departments by projected 2026 TBS show diverging trajectories. While some departments like Computer Engineering maintain relatively stable competitiveness, others such as Control & Automation and Mathematics Engineering show rapid improvement, suggesting growing career prospects in these areas.
+The top 10 departments by projected 2026 TBS show diverging trajectories. While some departments maintain relatively stable competitiveness, others show rapid improvement, suggesting growing career prospects in these areas. The y-axis is reversed so that upward movement indicates increasing competitiveness.
 :::
 
 ------------------------------------------------------------------------
@@ -1105,7 +1111,7 @@ The top 10 departments by projected 2026 TBS show diverging trajectories. While 
 
 ------------------------------------------------------------------------
 
-## 9.1 Top Universities by Engineering Score (Data-Driven)
+## 9.1 Top Universities by Engineering Score
 
 > **Dataset:** YOKAtlas \| **Year:** 2025
 
@@ -1164,23 +1170,14 @@ This ranking is derived entirely from the data — no manual university selectio
 
 > **Dataset:** YOKAtlas \| **Year:** 2025
 
-```{r heatmap, warning=FALSE, message=FALSE, fig.height=7, fig.width=13}
+````{r heatmap, warning=FALSE, message=FALSE, fig.height=10, fig.width=15}
 library(dplyr)
 library(ggplot2)
 library(stringr)
 
-common_depts <- df_muh_temiz %>%
-  filter(universite %in% top12_uni_puan$universite,
-         str_detect(ucret_burs, "cretsiz")) %>%
-  group_by(bolum) %>%
-  summarise(n_uni = n_distinct(universite), .groups = "drop") %>%
-  filter(n_uni >= 2) %>%
-  pull(bolum)
-
 heatmap_df <- df_muh_temiz %>%
   filter(universite %in% top12_uni_puan$universite,
-         bolum %in% common_depts,
-         ucret_burs == "Ücretsiz") %>%
+         str_detect(ucret_burs, "cretsiz") | str_detect(ucret_burs, "Burslu")) %>%
   group_by(universite, bolum) %>%
   summarise(avg_score = mean(taban_puan, na.rm = TRUE), .groups = "drop") %>%
   mutate(
@@ -1192,27 +1189,45 @@ heatmap_df <- df_muh_temiz %>%
                 str_replace(" UNIVERSITY", "")
   )
 
-ggplot(heatmap_df, aes(x = bolum_short, y = uni_short, fill = avg_score)) +
-  geom_tile(color = "white", linewidth = 0.6) +
-  geom_text(aes(label = round(avg_score, 0)), size = 2.8, color = "white",
+# Bölümleri ortalama puana göre sırala (yüksekten düşüğe)
+bolum_order <- heatmap_df %>%
+  group_by(bolum_short) %>%
+  summarise(ort = mean(avg_score, na.rm = TRUE), .groups = "drop") %>%
+  arrange(desc(ort)) %>%
+  pull(bolum_short)
+
+# Üniversiteleri medyan puana göre sırala
+uni_order <- top12_uni_puan %>%
+  arrange(desc(med_score)) %>%
+  mutate(uni_short = str_replace(universite, " ÜNİVERSİTESİ", "") %>%
+                     str_replace(" UNIVERSITY", "")) %>%
+  pull(uni_short)
+
+heatmap_df <- heatmap_df %>%
+  mutate(
+    bolum_short = factor(bolum_short, levels = rev(bolum_order)),
+    uni_short   = factor(uni_short,   levels = uni_order)
+  )
+
+ggplot(heatmap_df, aes(x = uni_short, y = bolum_short, fill = avg_score)) +
+  geom_tile(color = "white", linewidth = 0.5) +
+  geom_text(aes(label = round(avg_score, 0)), size = 2.5, color = "white",
             fontface = "bold") +
   scale_fill_gradient(low = "#aed6f1", high = "#1a5276", na.value = "gray93") +
   theme_minimal() +
   theme(
-    axis.text.x     = element_text(angle = 45, hjust = 1, size = 7),
-    axis.text.y     = element_text(size = 8),
+    axis.text.x     = element_text(angle = 45, hjust = 1, size = 8),
+    axis.text.y     = element_text(size = 7),
     legend.position = "bottom",
     panel.grid      = element_blank()
   ) +
   labs(title = "Top 12 Universities × Department — Base Score Heatmap (2025)",
-       subtitle = "Ücretsiz programs only | departments in ≥2 universities shown",
+       subtitle = "Departments ordered high to low | State: Ücretsiz | Private: Burslu | Empty = not offered",
        x = "", y = "", fill = "Avg. Base Score")
-```
-
-------------------------------------------------------------------------
+````
 
 ::: {.callout-note appearance="minimal"}
-The heatmap reveals which departments are offered across top universities and how scores vary within the same department across institutions. Darker cells indicate higher selectivity. Empty cells highlight departmental specialization — not all top universities offer every engineering field. Only departments shared by at least two universities are shown to keep the chart readable.
+The heatmap displays placement scores for all engineering departments across the top 12 universities, with departments ordered from highest to lowest average score (top to bottom) and universities ordered by median score (left to right). Darker cells indicate higher selectivity. Empty cells mean that department is not offered at that university. Koç and Bilkent lead the ranking among private universities, while Boğaziçi, ODTÜ, and İTÜ represent the strongest state institutions. The comparison uses free programs for state universities and scholarship programs for private universities to ensure fair comparability.
 :::
 
 ------------------------------------------------------------------------
@@ -1221,16 +1236,18 @@ The heatmap reveals which departments are offered across top universities and ho
 
 > **Dataset:** YOKAtlas \| **Year:** 2025
 
-```{r en-yuksek-bolum, warning=FALSE, message=FALSE, fig.height=10, fig.width=11}
+
+```{r en-yuksek-bolum, warning=FALSE, message=FALSE, fig.height=12, fig.width=13}
 library(dplyr)
 library(ggplot2)
 library(stringr)
+library(tidytext)
 
 top3_df <- df_muh_temiz %>%
   filter(universite %in% top12_uni_puan$universite,
-         str_detect(ucret_burs, "cretsiz")) %>%
+         str_detect(ucret_burs, "cretsiz") | str_detect(ucret_burs, "Burslu")) %>%
   group_by(universite, bolum) %>%
-  summarise(avg_score = mean(taban_puan, na.rm = TRUE), .groups = "drop") %>%
+  summarise(avg_score = max(taban_puan, na.rm = TRUE), .groups = "drop") %>%
   group_by(universite) %>%
   slice_max(avg_score, n = 3) %>%
   ungroup() %>%
@@ -1249,13 +1266,14 @@ top3_df <- df_muh_temiz %>%
                          pull(l))
   )
 
-ggplot(top3_df, aes(x = reorder(bolum_short, avg_score),
+ggplot(top3_df, aes(x = reorder_within(bolum_short, avg_score, uni_short),
                     y = avg_score, fill = uni_short)) +
   geom_col(show.legend = FALSE) +
   geom_text(aes(label = round(avg_score, 0)),
             hjust = -0.15, size = 3) +
   coord_flip() +
-  facet_wrap(~uni_short, scales = "free_y", ncol = 2) +
+  scale_x_reordered() +
+  facet_wrap(~uni_short, scales = "free_y", ncol = 3) +
   scale_y_continuous(expand = expansion(mult = c(0, 0.25))) +
   theme_minimal() +
   theme(
@@ -1266,12 +1284,12 @@ ggplot(top3_df, aes(x = reorder(bolum_short, avg_score),
     panel.spacing   = unit(1, "lines")
   ) +
   labs(title = "Top 3 Highest-Scoring Departments per University (Top 12)",
-       subtitle = "Ücretsiz programs only | universities ordered by median score",
-       x = "", y = "Avg. Base Score")
+       subtitle = "State: Ücretsiz | Private: Burslu | max score per dept | ordered high to low",
+       x = "", y = "Base Score")
 ```
 
 ::: {.callout-note appearance="minimal"}
-Each top university shows a distinct departmental profile. Computer Engineering and Electrical-Electronics Engineering consistently appear as the highest-scoring programs across multiple institutions. Excluding fee-paying programs ensures the ranking reflects genuine academic selectivity rather than niche high-score cohorts.
+Each university's three highest-scoring engineering departments are shown, using the maximum placement score per department to avoid deflation from multiple program tracks. Computer Engineering and Electrical-Electronics Engineering dominate across most institutions. Koç and Bilkent lead among private universities, while Boğaziçi, ODTÜ, and İTÜ represent the strongest state institutions.
 :::
 
 ------------------------------------------------------------------------
