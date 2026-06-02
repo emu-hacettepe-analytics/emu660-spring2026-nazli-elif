@@ -133,7 +133,6 @@ Planned analyses include cross-department score comparisons, public versus priva
 
 # 🧭Analysis
 
-
 ```{r libraries-extra, include=FALSE}
 library(dplyr)
 library(tidyr)
@@ -676,30 +675,53 @@ The majority of programs have a fill rate between 80-100%, indicating strong dem
 <!-- > **Dataset:** YOKAtlas \| **Year:** 2025 -->
 
 <!-- ```{r en-cok-doldurulan, warning=FALSE, message=FALSE} -->
+
 <!-- df_muh_temiz %>% -->
+
 <!--   filter(!is.na(doluluk)) %>% -->
+
 <!--   group_by(bolum) %>% -->
+
 <!--   summarise(avg_fill = mean(doluluk, na.rm = TRUE), n = n(), .groups = "drop") %>% -->
+
 <!--   filter(n >= 3) %>% -->
+
 <!--   arrange(desc(avg_fill)) %>% -->
+
 <!--   head(20) %>% -->
+
 <!--   ggplot(aes(x = reorder(bolum, avg_fill), y = avg_fill, fill = avg_fill)) + -->
+
 <!--   geom_col() + -->
+
 <!--   geom_hline(yintercept = 100, linetype = "dashed", color = "red", alpha = 0.7) + -->
+
 <!--   geom_text(aes(label = paste0("%", round(avg_fill, 0))), -->
+
 <!--             hjust = -0.1, size = 3) + -->
+
 <!--   coord_flip() + -->
+
 <!--   scale_fill_gradient(low = "lightyellow", high = "coral") + -->
+
 <!--   theme_minimal() + -->
+
 <!--   theme(legend.position = "none") + -->
+
 <!--   labs(title = "Most Filled Engineering Departments (Top 20) - 2025", -->
+
 <!--        subtitle = "Red dashed line = 100% fill rate", -->
+
 <!--        x = "", y = "Avg. Fill Rate (%)") + -->
+
 <!--   scale_y_continuous(expand = expansion(mult = c(0, 0.18))) -->
+
 <!-- ``` -->
 
 <!-- ::: {.callout-note appearance="minimal"} -->
+
 <!-- Departments exceeding 100% average fill rate are the most oversubscribed programs. Increasing quota capacity in these fields could help address both access inequality and labor market demand. -->
+
 <!-- ::: -->
 
 ------------------------------------------------------------------------
@@ -937,11 +959,11 @@ The analysis includes both **state universities** and **fully-funded scholarship
 
 A minimum of **3 distinct universities** per department per year is required to ensure statistical reliability. Departments offered at only 1-2 universities are excluded as their median TBS is too sensitive to a single institution's fluctuations.
 
----
+------------------------------------------------------------------------
 
 ## 8.1 Annual TBS Change by Engineering Department (Trend Analysis)
 
-> **Dataset:** YOKAtlas | **Year:** 2022-2025 | **State + fully-funded scholarship | min. 3 universities**
+> **Dataset:** YOKAtlas \| **Year:** 2022-2025 \| **State + fully-funded scholarship \| min. 3 universities**
 
 ```{r tbs-slope, warning=FALSE, message=FALSE, fig.width=12, fig.height=14}
 # Build raw TBS data with university names for proper counting
@@ -1025,11 +1047,11 @@ tbs_tahmin %>%
 Departments with a strongly negative slope are becoming more competitive each year — the students choosing them have increasingly higher national rankings. By including fully-funded scholarship private universities alongside state universities, the analysis captures a broader and more representative picture of genuine student demand. The minimum of 3 distinct universities per department ensures that results are not driven by a single institution's fluctuations. Departments with a positive slope are seeing reduced competition, which may reflect oversupply or declining labor market interest.
 :::
 
----
+------------------------------------------------------------------------
 
 ## 8.2 2026 Forecasted Success Ranking (TBS) by Department
 
-> **Dataset:** YOKAtlas | **Year:** 2022-2025 (Forecast: 2026) | **State + fully-funded scholarship | min. 3 universities**
+> **Dataset:** YOKAtlas \| **Year:** 2022-2025 (Forecast: 2026) \| **State + fully-funded scholarship \| min. 3 universities**
 
 ```{r tbs-rank, warning=FALSE, message=FALSE, fig.width=12, fig.height=14}
 tbs_tahmin %>%
@@ -1062,11 +1084,11 @@ tbs_tahmin %>%
 Departments with the lowest forecasted TBS values in 2026 are projected to be the most competitive. Including fully-funded scholarship private universities alongside state programs brings more programs per department into the analysis, resulting in more robust median estimates — particularly for fields like Computer Engineering and Industrial Engineering where prestigious private universities (e.g. Koç, Sabancı, Bilkent) offer fully-funded programs that attract top students. Departments offered at fewer than 3 distinct universities are excluded to prevent single-institution bias — for example, Mathematics Engineering, which is only available at 2 state universities (ITU and Yildiz Technical), is not included despite its very low TBS values.
 :::
 
----
+------------------------------------------------------------------------
 
 ## 8.3 Top 10 Most Demanded Departments - TBS Trend + 2026 Forecast
 
-> **Dataset:** YOKAtlas | **Year:** 2022-2025 (Forecast: 2026) | **State + fully-funded scholarship | min. 3 universities**
+> **Dataset:** YOKAtlas \| **Year:** 2022-2025 (Forecast: 2026) \| **State + fully-funded scholarship \| min. 3 universities**
 
 ```{r tbs-trend-top10, warning=FALSE, message=FALSE, fig.width=11, fig.height=7}
 top10_demand <- tbs_tahmin %>%
@@ -1116,7 +1138,7 @@ ggplot(tbs_combined, aes(x = yil, y = med_tbs, color = bolum, group = bolum)) +
 The top 10 departments by projected 2026 TBS show diverging trajectories. Compared to a state-only analysis, including fully-funded scholarship private universities slightly lowers the median TBS for competitive fields like Computer and Industrial Engineering — reflecting the additional demand signal from top scholarship programs at Koç, Sabancı, and Bilkent. The y-axis is reversed so that upward movement indicates increasing competitiveness. Departments showing a consistent upward trend (falling TBS over time) are likely benefiting from strong and growing labor market demand.
 :::
 
----
+------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
 
@@ -1183,7 +1205,7 @@ This ranking is derived entirely from the data — no manual university selectio
 
 > **Dataset:** YOKAtlas \| **Year:** 2025
 
-````{r heatmap, warning=FALSE, message=FALSE, fig.height=10, fig.width=15}
+```{r heatmap, warning=FALSE, message=FALSE, fig.height=10, fig.width=15}
 library(dplyr)
 library(ggplot2)
 library(stringr)
@@ -1237,7 +1259,7 @@ ggplot(heatmap_df, aes(x = uni_short, y = bolum_short, fill = avg_score)) +
   labs(title = "Top 12 Universities × Department — Base Score Heatmap (2025)",
        subtitle = "Departments ordered high to low | State: Ücretsiz | Private: Burslu | Empty = not offered",
        x = "", y = "", fill = "Avg. Base Score")
-````
+```
 
 ::: {.callout-note appearance="minimal"}
 The heatmap displays placement scores for all engineering departments across the top 12 universities, with departments ordered from highest to lowest average score (top to bottom) and universities ordered by median score (left to right). Darker cells indicate higher selectivity. Empty cells mean that department is not offered at that university. Koç and Bilkent lead the ranking among private universities, while Boğaziçi, ODTÜ, and İTÜ represent the strongest state institutions. The comparison uses free programs for state universities and scholarship programs for private universities to ensure fair comparability.
@@ -1248,7 +1270,6 @@ The heatmap displays placement scores for all engineering departments across the
 ## 9.3 Top 3 Departments per University (Top 12 Universities)
 
 > **Dataset:** YOKAtlas \| **Year:** 2025
-
 
 ```{r en-yuksek-bolum, warning=FALSE, message=FALSE, fig.height=12, fig.width=13}
 library(dplyr)
@@ -1340,3 +1361,11 @@ Multi-year trend analysis using YOKAtlas data (2022–2025) shows a consistent u
 ### Overall Assessment
 
 The analyses collectively paint a picture of a higher education system under increasing competitive pressure, with selectivity rising year-on-year across most engineering programs. Geographic and institutional inequalities remain structural features of the system. Students' choices are strongly influenced by prestige signals embedded in placement scores, and these signals closely track both university type and departmental reputation. For prospective students, the data suggests that program type and university prestige interact in ways that are not always visible from scores alone — particularly when comparing scholarship private programs with state university alternatives.
+
+# 5 References
+
+1.  Cavus, M., & Aydin, O. (2023). *thestats: An R package for accessing YÖK Atlas Turkish higher education statistics*. Retrieved from <https://github.com/analyticsresearchlab/thestats>
+
+2.  Council of Higher Education of Turkey. (2025). *YÖK Atlas: Higher Education Statistics Platform*. Retrieved from <https://yokatlas.yok.gov.tr>
+
+3.  Anthropic. (2025). *Claude (claude-sonnet-4-6)* \[Large language model\]. Used for data analysis support, code generation, and interpretation assistance. Retrieved from <https://www.anthropic.com>
